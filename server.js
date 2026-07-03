@@ -10,12 +10,12 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname)));
 
-// استيراد المسارات
-const authRoutes = require('./routes/auth');
-const miningRoutes = require('./routes/mining');
-const walletRoutes = require('./routes/wallet');
-const marketRoutes = require('./routes/market');
-const gamesRoutes = require('./routes/games');
+// استيراد المسارات (لاحظ أننا أضفنا /src/ أمام routes)
+const authRoutes = require('./src/routes/auth');
+const miningRoutes = require('./src/routes/mining');
+const walletRoutes = require('./src/routes/wallet');
+const marketRoutes = require('./src/routes/market');
+const gamesRoutes = require('./src/routes/games');
 
 app.use('/api', authRoutes);
 app.use('/api', miningRoutes);
