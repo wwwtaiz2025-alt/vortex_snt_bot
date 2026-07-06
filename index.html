@@ -7,65 +7,100 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            font-family: 'Segoe UI', system-ui, sans-serif;
             background: #0b0e1a;
             color: #e0e0e0;
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 16px;
-            background-image: radial-gradient(circle at 20% 30%, #1a2240 0%, #0b0e1a 80%);
+            padding: 12px;
+            background-image: radial-gradient(circle at 30% 20%, #1a2240 0%, #0b0e1a 90%);
+            overflow-x: hidden;
         }
         .container {
             max-width: 420px;
             width: 100%;
-            background: rgba(18, 24, 48, 0.85);
-            backdrop-filter: blur(12px);
-            border-radius: 36px;
-            padding: 24px 20px 30px;
-            border: 1px solid rgba(255, 215, 0, 0.15);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.8);
-        }
-        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-        .logo { font-size: 24px; font-weight: 800; color: #f5c842; letter-spacing: 1px; text-shadow: 0 0 20px rgba(245, 200, 66, 0.3); }
-        .logo span { color: #fff; font-weight: 300; }
-        .user-badge {
-            background: #20284a;
-            padding: 6px 14px;
+            background: rgba(16, 22, 44, 0.9);
+            backdrop-filter: blur(16px);
             border-radius: 40px;
-            font-size: 13px;
+            padding: 24px 18px 30px;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            box-shadow: 0 25px 80px rgba(0,0,0,0.9);
+            position: relative;
+            overflow: hidden;
+        }
+        /* تأثير الخلفية الذهبية الدوارة */
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent, rgba(245, 200, 66, 0.03), transparent, rgba(245, 200, 66, 0.03), transparent);
+            animation: spinGlow 20s linear infinite;
+            z-index: 0;
+        }
+        @keyframes spinGlow { 100% { transform: rotate(360deg); } }
+        
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; position: relative; z-index: 1; }
+        .logo-area { display: flex; align-items: center; gap: 10px; }
+        .logo-icon {
+            width: 44px; height: 44px;
+            background: linear-gradient(145deg, #f5c842, #b8860b);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 900;
+            color: #0b0e1a;
+            box-shadow: 0 4px 15px rgba(245, 200, 66, 0.4);
+            animation: logoPulse 3s ease-in-out infinite;
+        }
+        @keyframes logoPulse { 0%, 100% { box-shadow: 0 4px 15px rgba(245, 200, 66, 0.4); } 50% { box-shadow: 0 4px 30px rgba(245, 200, 66, 0.8); } }
+        .logo-text { font-size: 22px; font-weight: 800; color: #f5c842; letter-spacing: 1.5px; }
+        .logo-text span { color: #fff; font-weight: 300; }
+        .user-badge {
+            background: #1f284a;
+            padding: 6px 12px;
+            border-radius: 40px;
+            font-size: 12px;
             color: #b0c4f0;
             border: 1px solid #2f3a66;
             display: flex;
             align-items: center;
             gap: 6px;
+            max-width: 120px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
-        .user-badge::before { content: "👤"; font-size: 14px; }
+
         .counter-box {
-            background: linear-gradient(145deg, #121a30, #070b14);
+            background: linear-gradient(145deg, #11192e, #060a14);
             border-radius: 24px;
             padding: 16px;
             text-align: center;
-            margin-bottom: 20px;
-            border: 1px solid #26315a;
-            box-shadow: inset 0 2px 4px rgba(0,0,0,0.6);
+            margin-bottom: 18px;
+            border: 1px solid #1f284a;
+            position: relative;
+            z-index: 1;
         }
-        .counter-box .label { font-size: 13px; color: #8892b0; letter-spacing: 2px; text-transform: uppercase; }
         .counter-box .number {
             font-size: 48px;
             font-weight: 900;
             background: linear-gradient(135deg, #f5c842, #d49b1a);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
             line-height: 1.2;
+            transition: all 0.3s;
         }
-        .counter-box .sub { font-size: 14px; color: #5b6a8f; margin-top: 4px; }
         .counter-box .target-bar {
             width: 100%;
-            height: 6px;
-            background: #1f284a;
+            height: 8px;
+            background: #1a2340;
             border-radius: 10px;
             margin-top: 12px;
             overflow: hidden;
@@ -75,125 +110,85 @@
             width: 0%;
             background: linear-gradient(90deg, #f5c842, #f5a623);
             border-radius: 10px;
-            transition: width 0.8s ease;
+            transition: width 1s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
+
         .mine-card {
-            background: linear-gradient(145deg, #131d3a, #0c1124);
+            background: linear-gradient(145deg, #111a35, #080d1e);
             border-radius: 28px;
             padding: 20px 16px;
-            margin: 16px 0;
-            border: 1px solid #26315a;
+            margin: 12px 0;
+            border: 1px solid #1f284a;
+            position: relative;
+            z-index: 1;
         }
-        .mine-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
-        .mine-header h2 { font-size: 18px; font-weight: 600; color: #fff; }
-        .mine-header .points {
-            background: #1f2a50;
-            padding: 4px 16px;
-            border-radius: 40px;
-            font-size: 18px;
-            font-weight: 700;
-            color: #f5c842;
-        }
-        .progress-text { font-size: 13px; color: #8892b0; margin-bottom: 6px; }
-        .progress-bar {
-            width: 100%;
-            height: 8px;
-            background: #1a2340;
-            border-radius: 10px;
-            margin: 8px 0 16px;
-        }
-        .progress-bar .fill {
-            height: 100%;
-            width: 0%;
-            background: linear-gradient(90deg, #f5c842, #ff7b00);
-            border-radius: 10px;
-            transition: width 0.4s ease;
-        }
+
         .click-btn {
             width: 100%;
-            padding: 18px;
+            padding: 20px;
             border: none;
             border-radius: 60px;
-            font-size: 22px;
+            font-size: 24px;
             font-weight: 800;
             background: linear-gradient(145deg, #f5c842, #d49b1a);
             color: #0b0e1a;
-            box-shadow: 0 8px 0 #7a5c10, 0 12px 30px rgba(245, 200, 66, 0.25);
-            transition: all 0.08s linear;
+            box-shadow: 0 8px 0 #7a5c10, 0 12px 40px rgba(245, 200, 66, 0.2);
             cursor: pointer;
-            letter-spacing: 1px;
+            transition: all 0.08s linear;
             touch-action: manipulation;
-            user-select: none;
+            position: relative;
+            overflow: hidden;
+            animation: btnGlow 2s infinite alternate;
         }
+        @keyframes btnGlow { 0% { box-shadow: 0 8px 0 #7a5c10, 0 12px 40px rgba(245, 200, 66, 0.2); } 100% { box-shadow: 0 8px 0 #7a5c10, 0 12px 60px rgba(245, 200, 66, 0.5); } }
         .click-btn:active {
             transform: translateY(6px);
             box-shadow: 0 2px 0 #7a5c10;
         }
-        .click-btn:disabled {
-            opacity: 0.4;
-            transform: translateY(4px);
-            box-shadow: 0 4px 0 #7a5c10;
-            pointer-events: none;
+        .click-btn:disabled { opacity: 0.5; transform: translateY(4px); pointer-events: none; }
+
+        /* تأثير العملات المتطايرة (Coin Burst) */
+        .coin-burst { position: fixed; pointer-events: none; z-index: 999; }
+        .coin {
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            background: radial-gradient(circle at 30% 30%, #f5c842, #b8860b);
+            border-radius: 50%;
+            border: 2px solid #ffd700;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+            animation: flyCoin 1.2s ease-out forwards;
         }
-        .info-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin: 20px 0 16px;
+        @keyframes flyCoin {
+            0% { opacity: 1; transform: translate(0, 0) scale(1) rotate(0deg); }
+            100% { opacity: 0; transform: translate(var(--tx), var(--ty)) scale(0) rotate(720deg); }
         }
-        .info-item {
-            background: #121a30;
-            padding: 12px 6px;
-            border-radius: 16px;
-            text-align: center;
-            border: 1px solid #1f284a;
-        }
-        .info-item .val { font-size: 18px; font-weight: 700; color: #f5c842; }
+
+        .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 16px 0; position: relative; z-index: 1; }
+        .info-item { background: #0d1428; padding: 12px 6px; border-radius: 16px; text-align: center; border: 1px solid #1a2340; }
+        .info-item .val { font-size: 20px; font-weight: 700; color: #f5c842; }
         .info-item .lbl { font-size: 11px; color: #6a7aa0; margin-top: 4px; }
-        .actions {
-            display: flex;
-            gap: 10px;
-            margin: 10px 0 6px;
-        }
+
+        .actions { display: flex; gap: 10px; margin: 10px 0; position: relative; z-index: 1; }
         .actions button {
-            flex: 1;
-            padding: 12px 6px;
-            border-radius: 40px;
-            border: 1px solid #2f3a66;
-            background: transparent;
-            color: #b0c4f0;
-            font-weight: 600;
-            font-size: 13px;
-            cursor: pointer;
+            flex: 1; padding: 12px 6px; border-radius: 40px;
+            border: 1px solid #2f3a66; background: #0d1428;
+            color: #b0c4f0; font-weight: 600; font-size: 13px; cursor: pointer;
             transition: 0.2s;
-            background: #121a30;
         }
         .actions button:active { transform: scale(0.95); background: #1f284a; }
         .actions .buy-btn { border-color: #f5c842; color: #f5c842; }
-        .waiting-msg {
-            text-align: center;
-            padding: 30px 10px;
-            color: #8892b0;
-        }
+
+        .waiting-msg { text-align: center; padding: 20px 10px; color: #8892b0; position: relative; z-index: 1; }
         .waiting-msg .icon { font-size: 48px; display: block; margin-bottom: 12px; }
         .waiting-msg h3 { color: #f5c842; margin-bottom: 8px; }
+
         .toast {
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #1f1f3a;
-            color: #fff;
-            padding: 12px 24px;
-            border-radius: 60px;
-            border: 1px solid #f5c842;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-            font-size: 14px;
-            font-weight: 500;
-            display: none;
-            z-index: 999;
-            max-width: 90%;
-            text-align: center;
+            position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
+            background: #1f1f3a; color: #fff; padding: 12px 24px;
+            border-radius: 60px; border: 1px solid #f5c842;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.9); font-size: 14px;
+            display: none; z-index: 999; max-width: 90%; text-align: center;
             backdrop-filter: blur(10px);
         }
     </style>
@@ -201,20 +196,27 @@
 <body>
     <div class="container">
         <div class="header">
-            <div class="logo">VORTEX <span>| VTX</span></div>
+            <div class="logo-area">
+                <div class="logo-icon">V</div>
+                <div class="logo-text">ORTEX <span>| VTX</span></div>
+            </div>
             <div class="user-badge" id="usernameDisplay">@{{USERNAME}}</div>
         </div>
+
         <div class="counter-box">
-            <div class="label">👥 إجمالي المسجلين</div>
+            <div style="font-size:13px;color:#8892b0;">👥 إجمالي المسجلين</div>
             <div class="number" id="totalUsers">{{TOTAL_USERS}}</div>
-            <div class="sub">الهدف: 20,000 مستخدم</div>
+            <div style="font-size:13px;color:#5b6a8f;">الهدف: 20,000 مستخدم</div>
             <div class="target-bar"><div class="fill" id="targetFill" style="width: {{PROGRESS}}%;"></div></div>
         </div>
+
         <div id="miningArea"></div>
+
         <div class="info-grid">
-            <div class="info-item"><div class="val" id="pointsDisplay">{{POINTS}}</div><div class="lbl">نقاطك</div></div>
-            <div class="info-item"><div class="val" id="clicksLeft">{{MAX_CLICKS}}</div><div class="lbl">الضغطات المتبقية</div></div>
+            <div class="info-item"><div class="val" id="pointsDisplay">{{POINTS}}</div><div class="lbl">⭐ نقاطك</div></div>
+            <div class="info-item"><div class="val" id="clicksLeft">{{MAX_CLICKS}}</div><div class="lbl">⚡ الضغطات المتبقية</div></div>
         </div>
+
         <div class="actions">
             <button id="boostBtn" class="buy-btn">⚡ شراء هامش</button>
             <button id="refreshBtn">🔄 تحديث</button>
@@ -242,6 +244,22 @@
             toast.style.borderColor = isError ? '#ff4444' : '#f5c842';
             clearTimeout(toast._timeout);
             toast._timeout = setTimeout(() => { toast.style.display = 'none'; }, 3500);
+        }
+
+        // دالة تأثير العملات المتطايرة
+        function burstCoins(x, y) {
+            for (let i = 0; i < 8; i++) {
+                const coin = document.createElement('div');
+                coin.className = 'coin';
+                const angle = Math.random() * Math.PI * 2;
+                const dist = 80 + Math.random() * 120;
+                coin.style.setProperty('--tx', Math.cos(angle) * dist + 'px');
+                coin.style.setProperty('--ty', Math.sin(angle) * dist - 80 + 'px');
+                coin.style.left = (x - 12) + 'px';
+                coin.style.top = (y - 12) + 'px';
+                document.body.appendChild(coin);
+                setTimeout(() => coin.remove(), 1200);
+            }
         }
 
         async function fetchStatus() {
@@ -284,7 +302,7 @@
                 miningArea.innerHTML = `
                     <div class="waiting-msg">
                         <span class="icon">🏁</span>
-                        <h3>استنفذت كل ضغطاتك</h3>
+                        <h3>استنفذت كل الضغطات</h3>
                         <p>اشتري هامشاً إضافياً لمواصلة التعدين</p>
                         <button onclick="document.getElementById('boostBtn').click()" style="margin-top:16px;padding:12px 30px;border-radius:40px;border:1px solid #f5c842;background:transparent;color:#f5c842;font-weight:bold;">شراء هامش</button>
                     </div>
@@ -294,25 +312,32 @@
 
             miningArea.innerHTML = `
                 <div class="mine-card">
-                    <div class="mine-header">
-                        <h2>⛏️ التعدين</h2>
-                        <span class="points">+${currentPoints}</span>
+                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+                        <h2 style="font-size:18px;font-weight:600;">⛏️ التعدين</h2>
+                        <span style="background:#1f2a50;padding:4px 16px;border-radius:40px;font-size:18px;font-weight:700;color:#f5c842;">+${currentPoints}</span>
                     </div>
-                    <div class="progress-text">${clicksUsed} / ${maxClicks} ضغطة</div>
-                    <div class="progress-bar"><div class="fill" id="clickProgressFill" style="width: ${progressClick}%;"></div></div>
-                    <button class="click-btn" id="clickBtn">اضغط للتعدين</button>
+                    <div style="font-size:13px;color:#8892b0;">${clicksUsed} / ${maxClicks} ضغطة</div>
+                    <div style="width:100%;height:8px;background:#1a2340;border-radius:10px;margin:8px 0 16px;">
+                        <div class="fill" id="clickProgressFill" style="width:${progressClick}%;height:100%;background:linear-gradient(90deg,#f5c842,#ff7b00);border-radius:10px;transition:width 0.4s ease;"></div>
+                    </div>
+                    <button class="click-btn" id="clickBtn">⚡ اضغط للتعدين</button>
                     <div style="display:flex;justify-content:space-between;margin-top:12px;font-size:13px;color:#6a7aa0;">
                         <span>⚡ متبقي: ${remaining}</span>
-                        <span>⏱️ 3 ثوان بين الضغطات</span>
+                        <span>⏱️ 3 ثوان</span>
                     </div>
                 </div>
             `;
             document.getElementById('clickBtn').addEventListener('click', handleClick);
         }
 
-        async function handleClick() {
+        async function handleClick(e) {
             const btn = document.getElementById('clickBtn');
             if (!btn || btn.disabled) return;
+
+            // تأثير العملات المتطايرة عند الضغط
+            const rect = btn.getBoundingClientRect();
+            burstCoins(rect.left + rect.width/2, rect.top + rect.height/2);
+
             btn.disabled = true;
             btn.textContent = '⏳ جارٍ...';
 
@@ -327,7 +352,7 @@
                     if (res.status === 429) showToast(`⏳ انتظر ${Math.ceil(data.wait || 3)} ثوانٍ`, true);
                     else showToast(data.message || 'خطأ', true);
                     btn.disabled = false;
-                    btn.textContent = 'اضغط للتعدين';
+                    btn.textContent = '⚡ اضغط للتعدين';
                     return;
                 }
                 if (data.success) {
@@ -346,7 +371,7 @@
             }
             setTimeout(() => {
                 const newBtn = document.getElementById('clickBtn');
-                if (newBtn) { newBtn.disabled = false; newBtn.textContent = 'اضغط للتعدين'; }
+                if (newBtn) { newBtn.disabled = false; newBtn.textContent = '⚡ اضغط للتعدين'; }
             }, 500);
         }
 
