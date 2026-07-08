@@ -40,11 +40,16 @@ mongoose.connect(process.env.MONGO_URI, {
 .catch(err => console.error('❌ فشل الاتصال:', err.message));
 
 // ==============================
-// 3. نماذج قاعدة البيانات
+// 3. نماذج قاعدة البيانات (معدلة)
 // ==============================
 
 const UserSchema = new mongoose.Schema({
-    telegram_id: { type: Number, unique: true, sparse: true },
+    telegram_id: { 
+        type: Number, 
+        unique: false,          // ✅ تم إزالة unique
+        sparse: true, 
+        default: null 
+    },
     username: { type: String, default: 'مستخدم' },
     email: { type: String, unique: true, sparse: true },
     password: { type: String },
@@ -181,7 +186,6 @@ app.post('/api/auth/register', async (req, res) => {
 
         // 4. توليد كود إحالة فريد
         let refCode = generateReferralCode();
-        // التأكد من عدم تكرار الكود
         while (await User.findOne({ referral_code: refCode })) {
             refCode = generateReferralCode();
         }
@@ -195,7 +199,7 @@ app.post('/api/auth/register', async (req, res) => {
             }
         }
 
-        // 6. إنشاء المستخدم
+        // 6. إنشاء المستخدم (مع telegram_id = null)
         const user = new User({
             username: username || email.split('@')[0],
             email,
@@ -203,7 +207,8 @@ app.post('/api/auth/register', async (req, res) => {
             referral_code: refCode,
             referred_by: referredBy,
             captcha_passed: true,
-            role: 'user'
+            role: 'user',
+            telegram_id: null  // ✅ صريحاً null
         });
         await user.save();
 
@@ -329,7 +334,6 @@ app.get('/api/mining/status', async (req, res) => {
             if (endTime > now) {
                 remainingSeconds = Math.floor((endTime - now) / 1000);
             } else {
-                // انتهت الدورة، صرف المكافأة
                 user.is_mining_active = false;
                 user.balance_vrt += user.mining_daily_reward || 1;
                 await user.save();
