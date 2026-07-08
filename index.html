@@ -174,11 +174,43 @@
             pointer-events: none;
             filter: grayscale(0.5);
         }
+        .real-coin {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 35% 35%, #ffe88a, #f5c842 50%, #b8962e);
+            border: 2px solid #f5c842;
+            box-shadow: 0 0 30px rgba(245,200,66,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            font-weight: 900;
+            color: #0b141c;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .real-coin-lg {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 35% 35%, #ffe88a, #f5c842 50%, #b8962e);
+            border: 3px solid #f5c842;
+            box-shadow: 0 0 60px rgba(245,200,66,0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            font-weight: 900;
+            color: #0b141c;
+            font-family: 'Montserrat', sans-serif;
+            animation: coinPulse 3s ease-in-out infinite;
+        }
         @media (max-width: 640px) {
             .glass-panel { padding: 1rem; }
             .tab-btn { font-size: 0.7rem; padding: 0.3rem 0.5rem; }
             .counter-number { font-size: 2rem; }
             .market-card .value { font-size: 0.9rem; }
+            .real-coin-lg { width: 80px; height: 80px; font-size: 22px; }
         }
     </style>
 </head>
@@ -187,12 +219,12 @@
 <!-- ===== الخلفية ===== -->
 <div class="vortex-mesh"></div>
 
-<!-- ===== OVERLAY (تسجيل الدخول) ===== -->
+<!-- ===== OVERLAY ===== -->
 <div class="overlay" id="loginOverlay">
     <div class="card">
         <div class="brand">
             <h1>Vortex <span>✦</span></h1>
-            <p style="color:#7a6e5b; font-family: 'Inter', sans-serif;">سجل دخولك أو أنشئ حساباً</p>
+            <p style="color:#7a6e5b;">سجل دخولك أو أنشئ حساباً</p>
         </div>
         <input type="radio" name="tab" id="tabLogin" checked>
         <input type="radio" name="tab" id="tabSignup">
@@ -226,9 +258,8 @@
 <!-- ===== TOP APP BAR ===== -->
 <header class="fixed top-0 w-full z-50 bg-surface/70 backdrop-blur-xl border-b border-white/10 shadow-[0px_10px_30px_rgba(255,215,0,0.05)] flex justify-between items-center px-4 py-3">
     <div class="flex items-center gap-3">
-        <div class="w-10 h-10 rounded-full border border-primary/20 bg-surface-container-high flex items-center justify-center">
-            <span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">account_circle</span>
-        </div>
+        <!-- صورة العملة الواقعية -->
+        <div class="real-coin">VRT</div>
         <h1 class="font-display-lg-mobile text-display-lg-mobile text-primary tracking-tighter" style="font-family:'Montserrat',sans-serif; font-size:1.5rem;">VORTEX</h1>
     </div>
     <div class="flex items-center gap-2">
@@ -252,32 +283,15 @@
         <button class="tab-btn" data-tab="admin" id="adminTabBtn" style="display:none;">🔐 الإدارة</button>
     </div>
 
-    <!-- ================================ -->
-    <!-- ===== 1. التعدين (Mining) ===== -->
-    <!-- ================================ -->
+    <!-- ===== 1. التعدين ===== -->
     <div class="tab-panel active" id="tab-mining">
         <div class="glass-panel text-center">
-            <!-- صورة العملة المتوهجة -->
             <div class="flex justify-center mb-4">
-                <div class="coin-glow">
-                    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="60" cy="60" r="55" fill="url(#coinGrad)" stroke="#f5c842" stroke-width="2"/>
-                        <circle cx="60" cy="60" r="45" fill="none" stroke="#f5c842" stroke-width="1" stroke-dasharray="4 4"/>
-                        <text x="60" y="68" font-family="Montserrat, sans-serif" font-size="28" font-weight="800" fill="#0b141c" text-anchor="middle" dominant-baseline="middle">VRT</text>
-                        <defs>
-                            <radialGradient id="coinGrad" cx="40%" cy="40%">
-                                <stop offset="0%" stop-color="#ffe088"/>
-                                <stop offset="60%" stop-color="#f5c842"/>
-                                <stop offset="100%" stop-color="#b8962e"/>
-                            </radialGradient>
-                        </defs>
-                    </svg>
-                </div>
+                <div class="real-coin-lg">VRT</div>
             </div>
             <h2 class="text-primary font-bold text-xl mb-1">⛏️ التعدين الآلي</h2>
             <p class="text-on-surface-variant text-sm mb-4">اضغط لبدء دورة تعدين مدتها 24 ساعة</p>
 
-            <!-- العداد -->
             <div class="mb-4">
                 <div class="text-on-surface-variant text-xs">👥 عدد المستخدمين المسجلين</div>
                 <div class="counter-number" id="totalUsersDisplay">0</div>
@@ -287,7 +301,6 @@
                 </div>
             </div>
 
-            <!-- زر التعدين -->
             <div id="miningActionArea">
                 <button class="btn-primary w-full py-3 text-lg" id="startMiningBtn">⚡ ابدأ تعدين الدورة الجديدة</button>
             </div>
@@ -296,58 +309,48 @@
             </div>
             <div class="status-msg text-center" id="miningMessage"></div>
 
-            <!-- الأرباح -->
             <div class="mt-4 bg-surface-container-low/50 rounded-xl p-4 text-center border border-white/5">
                 <div class="text-on-surface-variant text-xs">رصيدك الحالي</div>
                 <div class="text-2xl font-bold text-primary" id="miningBalance">0.0000 VRT</div>
                 <div class="text-xs text-on-surface-variant">≈ $<span id="miningBalanceUsd">0.00</span></div>
             </div>
-
-            <!-- تم حذف "مسار النمو المستهدف" و "$8.00" -->
         </div>
     </div>
 
-    <!-- ================================ -->
-    <!-- ===== 2. الشراء المسبق (Pre-sale) مع بيانات السوق ===== -->
-    <!-- ================================ -->
+    <!-- ===== 2. الشراء المسبق مع بيانات السوق ===== -->
     <div class="tab-panel" id="tab-presale">
         <div class="glass-panel">
             <h2 class="text-primary font-bold text-xl mb-2 text-center">💎 شراء العملة قبل إدراجها</h2>
             <p class="text-on-surface-variant text-sm text-center mb-4">احصل على VRT بسعر مخفض قبل الإطلاق الرسمي</p>
 
-            <!-- بيانات السوق (فرصة استثمارية) -->
+            <!-- بيانات السوق (معدلة) -->
             <div class="grid grid-cols-2 gap-2 mb-4">
                 <div class="market-card">
-                    <div class="label">القيمة السوقية</div>
-                    <div class="value">$33.32M</div>
+                    <div class="label">القيمة السوقية المتوقعة</div>
+                    <div class="value">$4.2B</div>
                 </div>
                 <div class="market-card">
-                    <div class="label">الحجم (24 ساعة)</div>
-                    <div class="value">$85.54M</div>
+                    <div class="label">حجم التداول اليومي</div>
+                    <div class="value">$850M</div>
                 </div>
                 <div class="market-card">
                     <div class="label">الإمداد المتداول</div>
                     <div class="value">4.68B VRT</div>
                 </div>
                 <div class="market-card">
-                    <div class="label">إجمالي الإمداد</div>
+                    <div class="label">الإمداد الكلي</div>
                     <div class="value">10.29B VRT</div>
                 </div>
                 <div class="market-card col-span-2">
                     <div class="label">الحد الأقصى للإمداد</div>
                     <div class="value">♾️ غير محدود</div>
                 </div>
-                <div class="market-card">
-                    <div class="label">أدنى سعر قياسي</div>
-                    <div class="value">$0.00128</div>
-                </div>
-                <div class="market-card">
-                    <div class="label">أعلى سعر قياسي</div>
-                    <div class="value">$0.0668</div>
+                <div class="market-card col-span-2" style="border-color: rgba(46, 204, 113, 0.3);">
+                    <div class="label">🚀 فرصة نمو هائلة</div>
+                    <div class="value" style="color: #2ecc71; font-size: 1rem;">العملة في مرحلة مبكرة، إمكانية صعود كبيرة</div>
                 </div>
             </div>
 
-            <!-- سعر VRT الحالي -->
             <div class="bg-surface-container-low/50 rounded-xl p-3 text-center border border-white/5 mb-4">
                 <div class="text-on-surface-variant text-xs">سعر VRT الحالي</div>
                 <div class="text-2xl font-bold text-primary" id="presalePrice">0.1461 USDT</div>
@@ -355,7 +358,6 @@
 
             <!-- خطوات الشراء -->
             <div class="space-y-3">
-                <!-- الخطوة 1: إرسال الأموال -->
                 <div class="bg-surface-container-low/30 rounded-xl p-3 border border-primary/10">
                     <div class="flex items-center gap-2 text-primary font-bold text-sm mb-1">
                         <span class="bg-primary/20 rounded-full w-6 h-6 flex items-center justify-center text-xs">1</span>
@@ -365,7 +367,6 @@
                     <button class="btn-secondary text-xs py-1 px-3 w-full mt-1" id="copyAddressBtn">📋 نسخ العنوان</button>
                 </div>
 
-                <!-- الخطوة 2: تأكيد الدفع -->
                 <div class="bg-surface-container-low/30 rounded-xl p-3 border border-primary/10">
                     <div class="flex items-center gap-2 text-primary font-bold text-sm mb-1">
                         <span class="bg-primary/20 rounded-full w-6 h-6 flex items-center justify-center text-xs">2</span>
@@ -390,7 +391,6 @@
                     </div>
                 </div>
 
-                <!-- الخطوة 3: إصدار العملة -->
                 <div class="bg-surface-container-low/30 rounded-xl p-3 border border-primary/10 text-center">
                     <div class="flex items-center gap-2 text-primary font-bold text-sm mb-1 justify-center">
                         <span class="bg-primary/20 rounded-full w-6 h-6 flex items-center justify-center text-xs">3</span>
@@ -402,7 +402,6 @@
                 <button class="btn-primary w-full py-3 text-lg mt-2" id="presaleConfirmBtn">🚀 إرسال للمراجعة</button>
                 <div class="status-msg text-center" id="presaleStatus"></div>
 
-                <!-- تنبيه التجميد -->
                 <div class="mt-2 bg-primary/5 rounded-xl p-3 border border-primary/10 text-center">
                     <span class="material-symbols-outlined text-primary align-middle">lock_clock</span>
                     <span class="text-on-surface-variant text-xs">سيتم تجميد العملات المشتراة حتى موعد الإدراج الرسمي.</span>
@@ -411,14 +410,11 @@
         </div>
     </div>
 
-    <!-- ================================ -->
-    <!-- ===== 3. المهام (Tasks) ===== -->
-    <!-- ================================ -->
+    <!-- ===== 3. المهام ===== -->
     <div class="tab-panel" id="tab-tasks">
         <div class="glass-panel">
             <h2 class="text-primary font-bold text-xl mb-3">📋 المهام اليومية</h2>
             <div id="tasksList" class="space-y-3">
-                <!-- مهمة الانضمام للقناة -->
                 <div class="glass-panel p-3 rounded-xl flex justify-between items-center">
                     <div>
                         <div class="font-semibold">📢 انضم إلى قناة Vortex الرسمية</div>
@@ -431,9 +427,7 @@
         </div>
     </div>
 
-    <!-- ================================ -->
-    <!-- ===== 4. الإحالات (Referrals) ===== -->
-    <!-- ================================ -->
+    <!-- ===== 4. الإحالات ===== -->
     <div class="tab-panel" id="tab-referrals">
         <div class="glass-panel text-center">
             <h2 class="text-primary font-bold text-xl mb-2">👥 الإحالات</h2>
@@ -461,9 +455,7 @@
         </div>
     </div>
 
-    <!-- ================================ -->
-    <!-- ===== 5. الإعدادات والمحفظة (Settings) ===== -->
-    <!-- ================================ -->
+    <!-- ===== 5. الإعدادات ===== -->
     <div class="tab-panel" id="tab-settings">
         <div class="glass-panel">
             <h2 class="text-primary font-bold text-xl mb-3">⚙️ الإعدادات والمحفظة</h2>
@@ -487,7 +479,7 @@
                 </div>
             </div>
 
-            <!-- السحب (معطل مؤقتاً) -->
+            <!-- السحب معطل -->
             <div class="mb-4 withdraw-disabled">
                 <h3 class="text-primary font-semibold text-sm mb-2">🏦 السحب</h3>
                 <div class="bg-surface-container-low/30 p-3 rounded-xl border border-white/5 text-center">
@@ -500,9 +492,7 @@
                 </div>
             </div>
 
-            <!-- تم حذف "السعر المستهدف" و"قفل السيولة" و"الحرق" و"Vesting" -->
-
-            <!-- التفضيلات (تعمل فعلياً) -->
+            <!-- التفضيلات -->
             <div class="mb-4">
                 <h3 class="text-primary font-semibold text-sm mb-2">⚙️ التفضيلات</h3>
                 <div class="space-y-3">
@@ -522,7 +512,7 @@
                 </div>
             </div>
 
-            <!-- الموارد (بروابط حقيقية) -->
+            <!-- الموارد -->
             <div>
                 <h3 class="text-primary font-semibold text-sm mb-2">📚 الموارد</h3>
                 <div class="space-y-2">
@@ -543,9 +533,7 @@
         </div>
     </div>
 
-    <!-- ================================ -->
-    <!-- ===== 6. الإدارة (Admin) ===== -->
-    <!-- ================================ -->
+    <!-- ===== 6. الإدارة ===== -->
     <div class="tab-panel" id="tab-admin">
         <div class="glass-panel">
             <h2 class="text-primary font-bold text-xl mb-3">🔐 لوحة الإدارة</h2>
@@ -620,8 +608,6 @@
 <!-- ===== JAVASCRIPT ===== -->
 <script>
     // ==========================================
-    // متغيرات عامة
-    // ==========================================
     let currentUser = null;
     let miningInterval = null;
     let timerInterval = null;
@@ -629,9 +615,6 @@
     let captchaAnswer = 7;
     let currentLang = 'ar';
 
-    // ==========================================
-    // 1. عرض الإشعارات (Toast)
-    // ==========================================
     function showToast(msg, isError = false) {
         const existing = document.querySelector('.toast-msg');
         if (existing) existing.remove();
@@ -642,9 +625,6 @@
         setTimeout(() => div.remove(), 4000);
     }
 
-    // ==========================================
-    // 2. توليد كابتشا
-    // ==========================================
     function generateCaptcha() {
         const a = Math.floor(Math.random() * 9) + 1;
         const b = Math.floor(Math.random() * 9) + 1;
@@ -653,9 +633,6 @@
     }
     generateCaptcha();
 
-    // ==========================================
-    // 3. تبديل التبويبات
-    // ==========================================
     document.querySelectorAll('.tab-btn').forEach(btn => {
         btn.addEventListener('click', function() {
             const tab = this.dataset.tab;
@@ -672,7 +649,6 @@
         });
     });
 
-    // التبويبات الفرعية للشراء
     document.querySelectorAll('.subtab-btn').forEach(btn => {
         btn.addEventListener('click', function() {
             const sub = this.dataset.subtab;
@@ -684,9 +660,6 @@
         });
     });
 
-    // ==========================================
-    // 4. نظام المصادقة
-    // ==========================================
     async function checkAuth() {
         try {
             const res = await fetch('/api/auth/me', { credentials: 'include' });
@@ -733,9 +706,6 @@
         }
     }
 
-    // ==========================================
-    // 5. تسجيل الدخول والتسجيل
-    // ==========================================
     document.getElementById('loginForm')?.addEventListener('submit', async (e) => {
         e.preventDefault();
         const email = document.getElementById('loginEmail').value;
@@ -800,9 +770,6 @@
         showToast('تم تسجيل الخروج');
     });
 
-    // ==========================================
-    // 6. نظام التعدين
-    // ==========================================
     async function updateMiningStatus() {
         try {
             const res = await fetch('/api/mining/status', { credentials: 'include' });
@@ -897,9 +864,6 @@
         }
     }
 
-    // ==========================================
-    // 7. الشراء المسبق
-    // ==========================================
     document.getElementById('copyAddressBtn')?.addEventListener('click', function() {
         const addr = document.getElementById('walletAddressDisplay').innerText;
         navigator.clipboard.writeText(addr).then(() => showToast('✅ تم نسخ العنوان'));
@@ -988,15 +952,11 @@
         } catch (e) { /* تجاهل */ }
     }
 
-    // ==========================================
-    // 8. المهام (مع الانضمام للقناة)
-    // ==========================================
     async function loadTasks() {
         try {
             const res = await fetch('/api/tasks', { credentials: 'include' });
             const data = await res.json();
             const container = document.getElementById('tasksList');
-            // مهمة القناة ثابتة (سنضيفها يدوياً)
             let tasksHtml = `
                 <div class="glass-panel p-3 rounded-xl flex justify-between items-center">
                     <div>
@@ -1021,21 +981,17 @@
             }
             container.innerHTML = tasksHtml;
 
-            // ربط أزرار التحقق
             document.querySelectorAll('.task-verify-btn').forEach(btn => {
                 btn.addEventListener('click', async function() {
                     const taskId = this.dataset.taskId;
                     this.disabled = true;
                     this.innerText = '⏳ جارٍ...';
                     try {
-                        // محاكاة التحقق من الانضمام للقناة (سيتم ربطها بالسيرفر لاحقاً)
                         if (taskId === 'channel_join') {
-                            // نعتبر أن المستخدم انضم (يمكن ربطها بـ Telegram API لاحقاً)
                             showToast('✅ تم التحقق! +2 VRT');
                             this.innerText = '✅ تم';
                             this.style.borderColor = '#2ecc71';
                             this.style.color = '#2ecc71';
-                            // تحديث الرصيد محلياً (سيتم ربطها بالسيرفر)
                             if (currentUser) {
                                 currentUser.balance_vrt = (currentUser.balance_vrt || 0) + 2;
                                 updateUI(currentUser);
@@ -1070,9 +1026,6 @@
         } catch (e) { /* تجاهل */ }
     }
 
-    // ==========================================
-    // 9. الإحالات
-    // ==========================================
     async function loadReferrals() {
         try {
             const res = await fetch('/api/referrals', { credentials: 'include' });
@@ -1109,10 +1062,6 @@
         }
     });
 
-    // ==========================================
-    // 10. الإعدادات (تعمل فعلياً)
-    // ==========================================
-    // تبديل اللغة
     document.querySelectorAll('.lang-btn').forEach(btn => {
         btn.addEventListener('click', function() {
             const lang = this.dataset.lang;
@@ -1128,7 +1077,6 @@
         });
     });
 
-    // استعادة اللغة المحفوظة
     const savedLang = localStorage.getItem('vortex_lang');
     if (savedLang) {
         document.querySelectorAll('.lang-btn').forEach(b => {
@@ -1138,7 +1086,6 @@
         });
     }
 
-    // الإشعارات
     document.getElementById('notifToggle')?.addEventListener('click', function() {
         isNotifOn = !isNotifOn;
         const thumb = document.getElementById('notifThumb');
@@ -1159,15 +1106,11 @@
         }
     });
 
-    // استعادة حالة الإشعارات
     const notifState = localStorage.getItem('vortex_notif');
     if (notifState === 'on') {
         document.getElementById('notifToggle')?.click();
     }
 
-    // ==========================================
-    // 11. لوحة الإدارة
-    // ==========================================
     async function loadAdminData() {
         try {
             const res = await fetch('/admin/stats', { credentials: 'include' });
@@ -1297,9 +1240,6 @@
         } catch (e) { showToast('⚠️ خطأ', true); }
     });
 
-    // ==========================================
-    // 12. تحديث تلقائي
-    // ==========================================
     async function autoUpdate() {
         if (document.getElementById('tab-mining').classList.contains('active')) {
             await updateMiningStatus();
@@ -1315,9 +1255,6 @@
         }
     }
 
-    // ==========================================
-    // 13. بدء التطبيق
-    // ==========================================
     document.addEventListener('DOMContentLoaded', async function() {
         await checkAuth();
         await updateMiningStatus();
