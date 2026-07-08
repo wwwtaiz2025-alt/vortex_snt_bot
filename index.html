@@ -3,127 +3,40 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport">
-    <title>Vortex (VTX) | التعدين والشراء المسبق</title>
-    
+    <title>Vortex (VRT) | التعدين والمحفظة</title>
+
     <!-- ===== الخطوط والأيقونات ===== -->
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
-    
-    <!-- ===== تصميم النظام ===== -->
-    <script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    "colors": {
-                        "primary-container": "#d4af37",
-                        "secondary-container": "#ffdb3c",
-                        "on-tertiary-fixed": "#1a1c1c",
-                        "surface-bright": "#3a3939",
-                        "tertiary": "#cfcece",
-                        "primary": "#f2ca50",
-                        "on-background": "#e5e2e1",
-                        "on-secondary": "#3a3000",
-                        "on-surface-variant": "#d0c5af",
-                        "on-primary-container": "#554300",
-                        "primary-fixed-dim": "#e9c349",
-                        "tertiary-container": "#b3b3b3",
-                        "surface-container-high": "#2a2a2a",
-                        "on-error-container": "#ffdad6",
-                        "surface-container": "#201f1f",
-                        "surface-tint": "#e9c349",
-                        "on-tertiary": "#2f3131",
-                        "background": "#131313",
-                        "surface-dim": "#131313",
-                        "surface-variant": "#353534",
-                        "on-secondary-container": "#725f00",
-                        "tertiary-fixed": "#e3e2e2",
-                        "inverse-on-surface": "#313030",
-                        "on-tertiary-fixed-variant": "#464747",
-                        "secondary-fixed": "#ffe16d",
-                        "on-primary": "#3c2f00",
-                        "primary-fixed": "#ffe088",
-                        "tertiary-fixed-dim": "#c6c6c6",
-                        "on-secondary-fixed": "#221b00",
-                        "surface": "#131313",
-                        "on-surface": "#e5e2e1",
-                        "inverse-primary": "#735c00",
-                        "error": "#ffb4ab",
-                        "outline-variant": "#4d4635",
-                        "on-secondary-fixed-variant": "#544600",
-                        "inverse-surface": "#e5e2e1",
-                        "on-error": "#690005",
-                        "error-container": "#93000a",
-                        "secondary": "#fff9ef",
-                        "outline": "#99907c",
-                        "on-primary-fixed-variant": "#574500",
-                        "on-tertiary-container": "#444546",
-                        "on-primary-fixed": "#241a00",
-                        "surface-container-highest": "#353534",
-                        "surface-container-lowest": "#0e0e0e",
-                        "surface-container-low": "#1c1b1b",
-                        "secondary-fixed-dim": "#e9c400"
-                    },
-                    "borderRadius": {
-                        "DEFAULT": "0.25rem",
-                        "lg": "0.5rem",
-                        "xl": "0.75rem",
-                        "full": "9999px"
-                    },
-                    "spacing": {
-                        "stack-sm": "12px",
-                        "stack-md": "24px",
-                        "container-padding-desktop": "40px",
-                        "gutter": "24px",
-                        "base-unit": "8px",
-                        "container-padding-mobile": "20px",
-                        "stack-lg": "48px"
-                    },
-                    "fontFamily": {
-                        "display-lg-mobile": ["Montserrat"],
-                        "numeric-data": ["Inter"],
-                        "body-md": ["Inter"],
-                        "display-lg": ["Montserrat"],
-                        "body-lg": ["Inter"],
-                        "headline-md": ["Montserrat"],
-                        "label-sm": ["Inter"]
-                    },
-                    "fontSize": {
-                        "display-lg-mobile": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
-                        "numeric-data": ["20px", {"lineHeight": "1", "letterSpacing": "-0.01em", "fontWeight": "500"}],
-                        "body-md": ["16px", {"lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400"}],
-                        "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
-                        "body-lg": ["18px", {"lineHeight": "1.6", "letterSpacing": "0", "fontWeight": "400"}],
-                        "headline-md": ["24px", {"lineHeight": "1.3", "letterSpacing": "0.01em", "fontWeight": "600"}],
-                        "label-sm": ["12px", {"lineHeight": "1", "letterSpacing": "0.08em", "fontWeight": "600"}]
-                    }
-                }
-            }
-        }
-    </script>
-    
+
     <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            background-color: #0A0A0A;
+            background: #0A0A0A;
             color: #e5e2e1;
-            -webkit-font-smoothing: antialiased;
             font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+            overflow-x: hidden;
+            padding-bottom: 80px;
         }
         .glass-panel {
             background: rgba(20, 20, 20, 0.7);
             backdrop-filter: blur(20px);
             border: 1px solid rgba(212, 175, 55, 0.15);
             box-shadow: 0 4px 24px -1px rgba(0, 0, 0, 0.2);
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
         }
-        .gold-glow {
-            box-shadow: 0px 0px 15px rgba(255, 215, 0, 0.15);
-        }
-        .inner-stroke {
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1) 0%, rgba(255, 215, 0, 0) 100%);
-        }
+        .glass-panel:hover { border-color: rgba(212, 175, 55, 0.35); }
+        .gold-glow { box-shadow: 0px 0px 15px rgba(255, 215, 0, 0.15); }
         .vortex-mesh {
             background-image: radial-gradient(circle at 50% 50%, rgba(242, 202, 80, 0.05) 0%, transparent 70%);
+            position: fixed;
+            inset: 0;
+            z-index: -1;
         }
         .tab-btn {
             padding: 0.4rem 0.8rem;
@@ -132,10 +45,11 @@
             background: transparent;
             color: #8a7e6b;
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             cursor: pointer;
             transition: 0.3s;
             font-family: 'Inter', sans-serif;
+            white-space: nowrap;
         }
         .tab-btn.active {
             background: rgba(212, 175, 55, 0.15);
@@ -143,10 +57,7 @@
             box-shadow: 0 0 20px rgba(245, 200, 66, 0.05);
         }
         .tab-btn:hover { color: #f5e6c8; }
-        .tab-panel {
-            display: none;
-            animation: fadeSlide 0.35s ease;
-        }
+        .tab-panel { display: none; animation: fadeSlide 0.35s ease; }
         .tab-panel.active { display: block; }
         @keyframes fadeSlide {
             0% { opacity: 0.3; transform: translateY(8px); }
@@ -155,7 +66,7 @@
         .btn-primary {
             background: linear-gradient(135deg, #f5c842, #d4af37);
             border: none;
-            padding: 0.7rem 1.5rem;
+            padding: 0.6rem 1.2rem;
             border-radius: 3rem;
             font-weight: 700;
             color: #0b141c;
@@ -163,10 +74,11 @@
             transition: 0.25s;
         }
         .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(245, 200, 66, 0.3); }
+        .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
         .btn-secondary {
             background: rgba(245, 200, 66, 0.08);
             border: 1px solid rgba(245, 200, 66, 0.2);
-            padding: 0.7rem 1.2rem;
+            padding: 0.5rem 1rem;
             border-radius: 3rem;
             font-weight: 600;
             color: #f5c842;
@@ -174,89 +86,81 @@
             transition: 0.2s;
         }
         .btn-secondary:hover { background: rgba(245, 200, 66, 0.15); }
+        .btn-danger { background: rgba(255, 70, 70, 0.15); border: 1px solid rgba(255, 70, 70, 0.3); color: #ff6b6b; padding: 0.5rem 1rem; border-radius: 3rem; font-weight: 600; cursor: pointer; transition: 0.2s; }
+        .btn-danger:hover { background: rgba(255, 70, 70, 0.25); }
         .status-msg { font-size: 0.85rem; min-height: 1.5rem; color: #b0a48a; margin-top: 0.3rem; }
-        
-        /* ===== Overlay ===== */
+        .counter-number { font-size: 2.5rem; font-weight: 800; color: #f5c842; font-family: 'Montserrat', sans-serif; }
+        .progress-bar-bg { background: #1a2340; height: 6px; border-radius: 10px; overflow: hidden; }
+        .progress-bar-fill { background: linear-gradient(90deg, #f5c842, #f5a623); height: 100%; transition: width 1s cubic-bezier(0.34, 1.56, 0.64, 1); }
         .overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.92);
-            backdrop-filter: blur(16px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 999;
-            padding: 1.5rem;
+            position: fixed; inset: 0; background: rgba(0,0,0,0.92); backdrop-filter: blur(16px);
+            display: flex; align-items: center; justify-content: center; z-index: 999; padding: 1.5rem;
         }
         .overlay.hidden { display: none; }
         .overlay .card {
-            background: rgba(10,8,8,0.9);
-            border: 1px solid rgba(212,175,55,0.25);
-            border-radius: 2.5rem;
-            padding: 2.5rem 2rem;
-            max-width: 440px;
-            width: 100%;
+            background: rgba(10,8,8,0.9); border: 1px solid rgba(212,175,55,0.25); border-radius: 2.5rem;
+            padding: 2.5rem 2rem; max-width: 440px; width: 100%;
         }
         .overlay .brand { text-align: center; margin-bottom: 2rem; }
         .overlay .brand h1 { font-size: 2.2rem; font-weight: 300; color: #f5e6c8; font-family: 'Montserrat', sans-serif; }
         .overlay .brand h1 span { color: #d4af37; font-weight: 700; }
         .overlay .tabs { display: flex; gap: 0.5rem; margin-bottom: 1.8rem; }
         .overlay .tabs label {
-            flex: 1;
-            text-align: center;
-            padding: 0.6rem;
-            border-radius: 3rem;
-            background: rgba(255,255,255,0.03);
-            color: #8a7e6b;
-            cursor: pointer;
-            border: 1px solid transparent;
-            transition: 0.2s;
-            font-family: 'Inter', sans-serif;
+            flex: 1; text-align: center; padding: 0.6rem; border-radius: 3rem;
+            background: rgba(255,255,255,0.03); color: #8a7e6b; cursor: pointer;
+            border: 1px solid transparent; transition: 0.2s; font-family: 'Inter', sans-serif;
         }
         #tabLogin:checked ~ .tabs label[for="tabLogin"],
         #tabSignup:checked ~ .tabs label[for="tabSignup"] {
-            background: rgba(212,175,55,0.12);
-            border-color: #d4af37;
-            color: #f5e6c8;
+            background: rgba(212,175,55,0.12); border-color: #d4af37; color: #f5e6c8;
         }
         .overlay .forms .form-box { display: none; flex-direction: column; gap: 1.2rem; }
         #tabLogin:checked ~ .forms #loginForm { display: flex; }
         #tabSignup:checked ~ .forms #signupForm { display: flex; }
-        .overlay input {
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 2.2rem;
-            padding: 0.7rem 1.2rem;
-            color: #f0e6d5;
-            width: 100%;
-            outline: none;
+        .overlay input, .overlay select {
+            background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 2.2rem; padding: 0.7rem 1.2rem; color: #f0e6d5; width: 100%; outline: none;
             font-family: 'Inter', sans-serif;
         }
-        .overlay input:focus { border-color: #d4af37; }
+        .overlay input:focus, .overlay select:focus { border-color: #d4af37; }
         .overlay .error-msg { color: #e74c3c; font-size: 0.85rem; text-align: center; min-height: 1.4rem; }
-        
-        /* ===== Custom ===== */
-        .counter-number { font-size: 3rem; font-weight: 800; color: #f5c842; font-family: 'Montserrat', sans-serif; }
-        .progress-bar-bg { background: #1a2340; height: 6px; border-radius: 10px; overflow: hidden; }
-        .progress-bar-fill { background: linear-gradient(90deg, #f5c842, #f5a623); height: 100%; transition: width 1s cubic-bezier(0.34, 1.56, 0.64, 1); }
+        .overlay .captcha-box { display: flex; gap: 0.5rem; align-items: center; }
+        .overlay .captcha-box span { color: #d4af37; font-size: 1.2rem; font-weight: bold; background: rgba(0,0,0,0.3); padding: 0.3rem 0.8rem; border-radius: 0.8rem; }
         .toast-msg {
-            animation: fadeInUp 0.3s ease-out;
+            position: fixed; bottom: 100px; left: 50%; transform: translateX(-50%);
+            background: rgba(0,0,0,0.9); color: #fff; padding: 0.8rem 1.5rem;
+            border-radius: 3rem; border: 1px solid #d4af37;
+            font-size: 0.9rem; z-index: 999; max-width: 90%; text-align: center;
+            backdrop-filter: blur(10px); animation: fadeInUp 0.3s ease-out;
         }
+        .toast-msg.error { border-color: #ff6b6b; }
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            to { opacity: 1; transform: translateX(-50%) translateY(0); }
         }
         ::-webkit-scrollbar { width: 4px; }
         ::-webkit-scrollbar-track { background: #131313; }
         ::-webkit-scrollbar-thumb { background: #d4af37; border-radius: 10px; }
+        .chart-bars { display: flex; align-items: flex-end; gap: 0.3rem; height: 80px; margin: 0.5rem 0; }
+        .chart-bar { flex: 1; background: rgba(212,175,55,0.2); border-radius: 4px 4px 0 0; min-height: 8px; transition: height 0.5s; }
+        .chart-bar.active { background: #f5c842; box-shadow: 0 0 10px rgba(245,200,66,0.3); }
+        .status-badge { padding: 0.2rem 0.8rem; border-radius: 2rem; font-size: 0.7rem; font-weight: 600; }
+        .badge-pending { background: #f5a623; color: #000; }
+        .badge-approved { background: #2ecc71; color: #fff; }
+        .badge-rejected { background: #e74c3c; color: #fff; }
         @media (max-width: 640px) {
-            .container-padding-mobile { padding-left: 16px; padding-right: 16px; }
+            .glass-panel { padding: 1rem; }
+            .tab-btn { font-size: 0.7rem; padding: 0.3rem 0.5rem; }
+            .counter-number { font-size: 2rem; }
         }
     </style>
 </head>
-<body class="font-body-md text-body-md overflow-x-hidden pb-24">
+<body>
 
-<!-- ===== OVERLAY ===== -->
+<!-- ===== الخلفية ===== -->
+<div class="vortex-mesh"></div>
+
+<!-- ===== OVERLAY (تسجيل الدخول) ===== -->
 <div class="overlay" id="loginOverlay">
     <div class="card">
         <div class="brand">
@@ -278,9 +182,13 @@
             </form>
             <form class="form-box" id="signupForm">
                 <input type="text" id="signupName" placeholder="الاسم الكامل" required>
-                <input type="tel" id="signupPhone" placeholder="رقم الجوال" required>
                 <input type="email" id="signupEmail" placeholder="البريد الإلكتروني" required>
                 <input type="password" id="signupPassword" placeholder="كلمة المرور" required>
+                <div class="captcha-box">
+                    <span id="captchaDisplay">3 + 4 = ?</span>
+                    <input type="text" id="captchaAnswer" placeholder="الإجابة" style="flex:1; min-width:60px;">
+                </div>
+                <input type="text" id="signupReferral" placeholder="كود الإحالة (اختياري)">
                 <div class="error-msg" id="signupError"></div>
                 <button class="btn-primary" type="submit" style="width:100%;">إنشاء الحساب</button>
             </form>
@@ -289,299 +197,406 @@
 </div>
 
 <!-- ===== TOP APP BAR ===== -->
-<header class="fixed top-0 w-full z-50 bg-surface/70 backdrop-blur-xl border-b border-white/10 shadow-[0px_10px_30px_rgba(255,215,0,0.05)] flex justify-between items-center px-4 py-4">
+<header class="fixed top-0 w-full z-50 bg-surface/70 backdrop-blur-xl border-b border-white/10 shadow-[0px_10px_30px_rgba(255,215,0,0.05)] flex justify-between items-center px-4 py-3">
     <div class="flex items-center gap-3">
         <div class="w-10 h-10 rounded-full border border-primary/20 bg-surface-container-high flex items-center justify-center">
             <span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">account_circle</span>
         </div>
-        <h1 class="font-display-lg-mobile text-display-lg-mobile text-primary tracking-tighter">VORTEX</h1>
+        <h1 class="font-display-lg-mobile text-display-lg-mobile text-primary tracking-tighter" style="font-family:'Montserrat',sans-serif; font-size:1.5rem;">VORTEX</h1>
     </div>
-    <div class="flex items-center gap-3">
-        <div class="flex items-center bg-surface-container px-3 py-1.5 rounded-full border border-white/5 active:scale-95 transition-transform cursor-pointer">
-            <span class="font-numeric-data text-label-sm text-primary"><span id="headerVtxBalance">{{POINTS}}</span> VTX</span>
+    <div class="flex items-center gap-2">
+        <div class="flex items-center bg-surface-container px-3 py-1.5 rounded-full border border-white/5">
+            <span class="font-numeric-data text-label-sm text-primary" id="headerBalance">0.00 VRT</span>
         </div>
-        <span style="color:#8a7e6b; font-size:0.85rem; font-family: 'Inter', sans-serif;" id="headerUsername">@{{USERNAME}}</span>
+        <button id="logoutBtn" class="text-xs text-on-surface-variant hover:text-primary transition-colors">🚪</button>
     </div>
 </header>
 
-<!-- ===== MAIN CONTENT ===== -->
-<main class="mt-24 px-4 max-w-2xl mx-auto space-y-6">
+<!-- ===== MAIN ===== -->
+<main class="mt-20 px-4 max-w-2xl mx-auto space-y-4">
 
-    <!-- ===== التبويبات ===== -->
+    <!-- ===== تبويبات التنقل ===== -->
     <div class="flex gap-1 bg-surface-container/50 p-1 rounded-full border border-white/5 overflow-x-auto" style="direction: rtl;">
         <button class="tab-btn active" data-tab="mining">⛏️ التعدين</button>
         <button class="tab-btn" data-tab="presale">💎 الشراء</button>
-        <button class="tab-btn" data-tab="wallet">💰 المحفظة</button>
+        <button class="tab-btn" data-tab="tasks">📋 المهام</button>
         <button class="tab-btn" data-tab="referrals">👥 الإحالات</button>
-        <button class="tab-btn" data-tab="admin" id="adminTabBtn" style="display:none;">⚙️ الإدارة</button>
+        <button class="tab-btn" data-tab="settings">⚙️ الإعدادات</button>
+        <button class="tab-btn" data-tab="admin" id="adminTabBtn" style="display:none;">🔐 الإدارة</button>
     </div>
 
-    <!-- ===== تبويب: التعدين ===== -->
+    <!-- ================================ -->
+    <!-- ===== 1. التعدين (Mining) ===== -->
+    <!-- ================================ -->
     <div class="tab-panel active" id="tab-mining">
-        <div class="glass-panel rounded-2xl p-6 relative overflow-hidden">
-            <div class="absolute inset-0 inner-stroke pointer-events-none"></div>
-            <h2 class="font-headline-md text-headline-md text-primary mb-4">⛏️ التعدين الآلي</h2>
-            <p class="text-on-surface-variant text-sm mb-4">اضغط لزيادة أرباحك اليومية</p>
-            
+        <div class="glass-panel">
+            <h2 class="text-primary font-bold text-xl mb-1">⛏️ التعدين الآلي</h2>
+            <p class="text-on-surface-variant text-sm mb-4">اضغط لبدء دورة تعدين مدتها 24 ساعة</p>
+
             <!-- العداد -->
             <div class="mb-4">
                 <div class="text-on-surface-variant text-xs">👥 عدد المستخدمين المسجلين</div>
-                <div class="counter-number" id="totalUsersDisplay">{{TOTAL_USERS}}</div>
-                <div class="text-xs text-on-surface-variant">الهدف: 20,000 مستخدم</div>
+                <div class="counter-number" id="totalUsersDisplay">0</div>
+                <div class="text-xs text-on-surface-variant">المقاعد المتبقية: <span id="remainingSeats">100,000</span></div>
                 <div class="progress-bar-bg mt-2">
-                    <div class="progress-bar-fill" id="targetProgress" style="width:{{PROGRESS}}%;"></div>
+                    <div class="progress-bar-fill" id="seatsProgress" style="width:0%;"></div>
                 </div>
             </div>
-            
-            <!-- حالة التعدين -->
-            <div id="miningStatus" class="mb-3 font-bold text-sm" style="color:#f39c12;">
-                ⏳ جاري تحميل الحالة...
-            </div>
-            
+
             <!-- زر التعدين -->
-            <button class="btn-primary w-full py-3 text-lg mb-2" id="mineBtn">⛏️ تعدين (يدوي)</button>
+            <div id="miningActionArea">
+                <button class="btn-primary w-full py-3 text-lg" id="startMiningBtn">⚡ ابدأ تعدين الدورة الجديدة</button>
+            </div>
+            <div id="miningTimer" class="hidden text-center text-2xl font-bold text-primary mt-2">
+                ⏱️ <span id="timerDisplay">00:00:00</span>
+            </div>
             <div class="status-msg text-center" id="miningMessage"></div>
-            
-            <!-- الأرباح اليومية -->
+
+            <!-- الأرباح -->
             <div class="mt-4 bg-surface-container-low/50 rounded-xl p-4 text-center border border-white/5">
-                <div class="text-on-surface-variant text-xs">الأرباح اليومية</div>
-                <div class="text-2xl font-bold text-primary" id="dailyEarnings">0.0000</div>
-                <div class="text-[10px] text-on-surface-variant">الحد الأقصى: 0.005 USDT</div>
+                <div class="text-on-surface-variant text-xs">رصيدك الحالي</div>
+                <div class="text-2xl font-bold text-primary" id="miningBalance">0.0000 VRT</div>
+                <div class="text-xs text-on-surface-variant">≈ $<span id="miningBalanceUsd">0.00</span></div>
             </div>
-            
-            <button class="btn-secondary w-full mt-3" id="harvestBtn">💰 حصاد الأرباح</button>
-            
-            <!-- المعززات -->
-            <div class="mt-5">
-                <h4 class="text-primary font-semibold text-sm mb-2">⚡ معززات التعدين</h4>
-                <div class="space-y-2">
-                    <div class="flex justify-between items-center bg-surface-container-low/30 p-3 rounded-xl border border-white/5">
-                        <span class="text-on-surface-variant text-sm">🥈 Silver (+1.5x)</span>
-                        <button class="btn-secondary boost-btn text-xs py-1 px-3" data-boost="silver">10 USDT</button>
-                    </div>
-                    <div class="flex justify-between items-center bg-surface-container-low/30 p-3 rounded-xl border border-white/5">
-                        <span class="text-primary text-sm">🥇 Gold (+3.0x)</span>
-                        <button class="btn-secondary boost-btn text-xs py-1 px-3" data-boost="gold">25 USDT</button>
-                    </div>
-                    <div class="flex justify-between items-center bg-surface-container-low/30 p-3 rounded-xl border border-white/5">
-                        <span class="text-error text-sm">💎 Titan (+8.0x)</span>
-                        <button class="btn-secondary boost-btn text-xs py-1 px-3" data-boost="titan">100 USDT</button>
-                    </div>
+
+            <!-- رسم بياني وهمي (Visionary Chart) -->
+            <div class="mt-4">
+                <div class="flex justify-between text-xs text-on-surface-variant">
+                    <span>مسار النمو المستهدف</span>
+                    <span class="text-primary">$8.00</span>
+                </div>
+                <div class="chart-bars">
+                    <div class="chart-bar" style="height:20%;"></div>
+                    <div class="chart-bar" style="height:35%;"></div>
+                    <div class="chart-bar" style="height:50%;"></div>
+                    <div class="chart-bar" style="height:65%;"></div>
+                    <div class="chart-bar active" style="height:80%;"></div>
+                    <div class="chart-bar" style="height:90%;"></div>
+                    <div class="chart-bar" style="height:100%;"></div>
+                </div>
+                <div class="flex justify-between text-[10px] text-on-surface-variant">
+                    <span>الآن</span>
+                    <span>الإدراج</span>
+                </div>
+                <div class="mt-2 text-[10px] text-on-surface-variant/60 text-center flex items-center justify-center gap-1">
+                    <span class="material-symbols-outlined text-[14px]">info</span>
+                    هذا المسار يمثل النمو المستهدف وليس السعر التداولي الحالي
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- ===== تبويب: الشراء المسبق ===== -->
+    <!-- ================================ -->
+    <!-- ===== 2. الشراء المسبق (Pre-sale) ===== -->
+    <!-- ================================ -->
     <div class="tab-panel" id="tab-presale">
-        <div class="glass-panel rounded-2xl p-6 relative overflow-hidden">
-            <div class="absolute inset-0 inner-stroke pointer-events-none"></div>
-            <h2 class="font-headline-md text-headline-md text-primary mb-2">💎 شراء VTX قبل الإدراج</h2>
-            <p class="text-on-surface-variant text-sm mb-4">احصل على العملة بسعر المخفض</p>
-            
-            <div class="bg-surface-container-low/50 rounded-xl p-4 text-center border border-white/5 mb-4">
-                <div class="text-on-surface-variant text-xs">سعر VTX الحالي</div>
-                <div class="text-3xl font-bold text-primary" id="presalePrice">{{VTX_PRICE}} USDT</div>
+        <div class="glass-panel">
+            <div class="flex gap-2 mb-4">
+                <button class="btn-secondary active-subtab" data-subtab="purchase-new" style="flex:1;">🛒 شراء جديد</button>
+                <button class="btn-secondary" data-subtab="purchase-history" style="flex:1;">📜 سجل معاملاتي</button>
             </div>
-            
-            <div class="space-y-4">
-                <div>
-                    <label class="text-on-surface-variant text-sm block mb-1">🇺🇸 المبلغ (USDT)</label>
-                    <div class="flex items-center bg-surface-container-low/50 rounded-full border border-white/5 p-1 pr-4">
-                        <input type="number" id="presaleUsdtInput" placeholder="0.00" step="0.01" min="0.01" class="flex-1 bg-transparent border-none p-2 text-on-surface text-lg outline-none w-full">
-                        <span class="bg-primary/10 px-3 py-1 rounded-full text-primary text-xs font-bold">USDT</span>
+
+            <!-- ===== شراء جديد ===== -->
+            <div id="subtab-purchase-new">
+                <div class="bg-surface-container-low/50 rounded-xl p-4 text-center border border-white/5 mb-4">
+                    <div class="text-on-surface-variant text-xs">سعر VRT الحالي</div>
+                    <div class="text-2xl font-bold text-primary" id="presalePrice">0.1461 USDT</div>
+                </div>
+                <div class="space-y-4">
+                    <div>
+                        <label class="text-on-surface-variant text-sm block mb-1">🇺🇸 المبلغ (USDT) (10-5000)</label>
+                        <div class="flex items-center bg-surface-container-low/50 rounded-full border border-white/5 p-1 pr-4">
+                            <input type="number" id="presaleUsdtInput" placeholder="0.00" step="0.1" min="10" max="5000" class="flex-1 bg-transparent border-none p-2 text-on-surface text-lg outline-none w-full">
+                            <span class="bg-primary/10 px-3 py-1 rounded-full text-primary text-xs font-bold">USDT</span>
+                        </div>
+                    </div>
+                    <div class="flex justify-center"><span class="material-symbols-outlined text-on-surface-variant">swap_vert</span></div>
+                    <div>
+                        <label class="text-on-surface-variant text-sm block mb-1">🪙 ستحصل على (VRT)</label>
+                        <div class="flex items-center bg-surface-container-low/50 rounded-full border border-primary/20 p-1 pr-4">
+                            <input type="text" id="presaleVtxOutput" readonly placeholder="0.00" class="flex-1 bg-transparent border-none p-2 text-primary text-lg font-bold outline-none w-full">
+                            <span class="bg-primary/10 px-3 py-1 rounded-full text-primary text-xs font-bold">VRT</span>
+                        </div>
                     </div>
                 </div>
-                <div class="flex justify-center"><span class="material-symbols-outlined text-on-surface-variant">swap_vert</span></div>
-                <div>
-                    <label class="text-on-surface-variant text-sm block mb-1">🪙 ستحصل على (VTX)</label>
-                    <div class="flex items-center bg-surface-container-low/50 rounded-full border border-primary/20 p-1 pr-4">
-                        <input type="text" id="presaleVtxOutput" readonly placeholder="0.00" class="flex-1 bg-transparent border-none p-2 text-primary text-lg font-bold outline-none w-full">
-                        <span class="bg-primary/10 px-3 py-1 rounded-full text-primary text-xs font-bold">VTX</span>
-                    </div>
+                <div class="mt-4 bg-surface-container-low/30 rounded-xl p-3 border border-dashed border-primary/20 text-center">
+                    <div class="text-on-surface-variant text-xs">📤 أرسل USDT إلى العنوان التالي (شبكة BSC):</div>
+                    <code class="text-primary text-xs break-all block my-1" id="walletAddressDisplay">{{USDT_WALLET}}</code>
+                    <button class="btn-secondary text-xs py-1 px-3" id="copyAddressBtn">📋 نسخ</button>
+                </div>
+                <div class="mt-3">
+                    <label class="text-on-surface-variant text-sm block mb-1">🔗 رقم المعاملة (TXID):</label>
+                    <input type="text" id="presaleTxidInput" placeholder="أدخل TXID من محفظتك..." class="w-full bg-surface-container-low/50 border border-white/5 rounded-full p-3 text-on-surface outline-none focus:border-primary/50">
+                </div>
+                <div class="mt-3">
+                    <label class="text-on-surface-variant text-sm block mb-1">🖼️ صورة إثبات الدفع (اختياري):</label>
+                    <input type="file" id="presaleScreenshot" accept="image/*" class="w-full bg-surface-container-low/50 border border-white/5 rounded-full p-2 text-on-surface outline-none">
+                </div>
+                <button class="btn-primary w-full py-3 text-lg mt-3" id="presaleConfirmBtn">🚀 إرسال للمراجعة</button>
+                <div class="status-msg text-center" id="presaleStatus"></div>
+                <div class="mt-4 bg-primary/5 rounded-xl p-3 border border-primary/10 text-center">
+                    <span class="material-symbols-outlined text-primary align-middle">lock_clock</span>
+                    <span class="text-on-surface-variant text-xs">سيتم تجميد العملات المشتراة حتى موعد الإدراج الرسمي.</span>
                 </div>
             </div>
-            
-            <div class="mt-4 bg-surface-container-low/30 rounded-xl p-3 border border-dashed border-primary/20 text-center">
-                <div class="text-on-surface-variant text-xs">📤 أرسل USDT إلى العنوان التالي (شبكة BSC):</div>
-                <code class="text-primary text-xs break-all block my-1">{{USDT_WALLET}}</code>
-                <button class="btn-secondary text-xs py-1 px-3" id="copyPresaleAddressBtn">📋 نسخ</button>
-            </div>
-            
-            <div class="mt-3">
-                <label class="text-on-surface-variant text-sm block mb-1">🔗 رقم المعاملة (TXID):</label>
-                <input type="text" id="presaleTxidInput" placeholder="أدخل TXID من محفظتك..." class="w-full bg-surface-container-low/50 border border-white/5 rounded-full p-3 text-on-surface outline-none focus:border-primary/50">
-            </div>
-            
-            <button class="btn-primary w-full py-3 text-lg mt-3" id="presaleConfirmBtn">✅ تأكيد الشراء</button>
-            <div class="status-msg text-center" id="presaleStatus"></div>
-            
-            <div class="mt-4 bg-primary/5 rounded-xl p-3 border border-primary/10 text-center">
-                <span class="material-symbols-outlined text-primary align-middle">lock_clock</span>
-                <span class="text-on-surface-variant text-xs">سيتم تجميد العملات المشتراة حتى موعد الإدراج الرسمي.</span>
+
+            <!-- ===== سجل معاملاتي ===== -->
+            <div id="subtab-purchase-history" class="hidden">
+                <div id="transactionsList" class="space-y-2 max-h-96 overflow-y-auto">
+                    <p class="text-on-surface-variant text-center text-sm py-4">لا توجد معاملات</p>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- ===== تبويب: المحفظة ===== -->
-    <div class="tab-panel" id="tab-wallet">
-        <div class="glass-panel rounded-2xl p-6 relative overflow-hidden">
-            <div class="absolute inset-0 inner-stroke pointer-events-none"></div>
-            <h2 class="font-headline-md text-headline-md text-primary mb-4">💰 المحفظة والأرصدة</h2>
-            
-            <div class="grid grid-cols-2 gap-3 mb-4">
-                <div class="bg-surface-container-low/50 rounded-xl p-4 text-center border border-white/5">
-                    <div class="text-on-surface-variant text-xs">USDT</div>
-                    <div class="text-xl font-bold text-primary" id="walletUsdt">0.0000</div>
-                </div>
-                <div class="bg-surface-container-low/50 rounded-xl p-4 text-center border border-primary/20">
-                    <div class="text-on-surface-variant text-xs">VTX</div>
-                    <div class="text-xl font-bold text-primary" id="walletVtx">{{POINTS}}</div>
-                </div>
-            </div>
-            
-            <!-- تحويل -->
-            <div class="mb-4">
-                <h4 class="text-primary font-semibold text-sm mb-2">🔄 تحويل داخلي (بدون عمولة)</h4>
-                <div class="flex flex-wrap gap-2">
-                    <input type="number" id="transferAmount" placeholder="المبلغ" step="0.0001" min="0.0001" class="flex-1 min-w-[120px] bg-surface-container-low/50 border border-white/5 rounded-full p-2 text-on-surface outline-none">
-                    <button class="btn-secondary text-xs py-2 px-4" id="transferToVtx">⬅️ USDT → VTX</button>
-                    <button class="btn-secondary text-xs py-2 px-4" id="transferToUsdt">➡️ VTX → USDT</button>
-                </div>
-                <div class="status-msg" id="transferStatus"></div>
-            </div>
-            
-            <!-- إيداع -->
-            <div class="mb-4">
-                <h4 class="text-primary font-semibold text-sm mb-2">📥 الإيداع اليدوي</h4>
-                <div class="flex flex-wrap gap-2">
-                    <input type="text" id="depositTxId" placeholder="رقم العملية / TxID" class="flex-1 min-w-[150px] bg-surface-container-low/50 border border-white/5 rounded-full p-2 text-on-surface outline-none">
-                    <button class="btn-primary text-sm py-2 px-4" id="depositBtn">تأكيد الإيداع</button>
-                </div>
-                <div class="status-msg" id="depositStatus"></div>
-            </div>
-            
-            <!-- سحب -->
-            <div class="mb-4">
-                <h4 class="text-primary font-semibold text-sm mb-2">🏦 السحب (الحد الأدنى 4 USDT)</h4>
-                <div class="flex flex-wrap gap-2">
-                    <input type="text" id="withdrawAddress" placeholder="عنوان المحفظة" class="flex-1 min-w-[150px] bg-surface-container-low/50 border border-white/5 rounded-full p-2 text-on-surface outline-none">
-                    <input type="number" id="withdrawAmount" placeholder="المبلغ" step="0.0001" min="4" class="w-24 bg-surface-container-low/50 border border-white/5 rounded-full p-2 text-on-surface outline-none">
-                    <button class="btn-secondary text-sm py-2 px-4" id="withdrawBtn">طلب السحب</button>
-                </div>
-                <div class="status-msg" id="withdrawStatus"></div>
-            </div>
-            
-            <!-- المعاملات -->
-            <div>
-                <h4 class="text-primary font-semibold text-sm mb-2">📜 آخر المعاملات</h4>
-                <ul id="transactionsList" class="list-none p-0 max-h-48 overflow-y-auto bg-surface-container-low/30 rounded-xl p-2">
-                    <li class="text-on-surface-variant text-center text-sm py-2">لا توجد معاملات</li>
-                </ul>
+    <!-- ================================ -->
+    <!-- ===== 3. المهام (Tasks) ===== -->
+    <!-- ================================ -->
+    <div class="tab-panel" id="tab-tasks">
+        <div class="glass-panel">
+            <h2 class="text-primary font-bold text-xl mb-3">📋 المهام اليومية</h2>
+            <div id="tasksList" class="space-y-3">
+                <p class="text-on-surface-variant text-center text-sm py-4">جاري تحميل المهام...</p>
             </div>
         </div>
     </div>
 
-    <!-- ===== تبويب: الإحالات ===== -->
+    <!-- ================================ -->
+    <!-- ===== 4. الإحالات (Referrals) ===== -->
+    <!-- ================================ -->
     <div class="tab-panel" id="tab-referrals">
-        <div class="glass-panel rounded-2xl p-6 relative overflow-hidden text-center">
-            <div class="absolute inset-0 inner-stroke pointer-events-none"></div>
-            <h2 class="font-headline-md text-headline-md text-primary mb-2">👥 الإحالات</h2>
+        <div class="glass-panel text-center">
+            <h2 class="text-primary font-bold text-xl mb-2">👥 الإحالات</h2>
             <div class="text-on-surface-variant text-sm">عدد المدعوين</div>
-            <div class="text-4xl font-bold text-primary" id="referralsCount">{{REFERRALS_COUNT}}</div>
-            
+            <div class="text-3xl font-bold text-primary" id="referralsCount">0</div>
+            <div class="text-on-surface-variant text-sm mt-1">إجمالي الأرباح: <span id="referralsEarnings" class="text-primary">0.00 VRT</span></div>
+
             <div class="my-4">
                 <div class="text-on-surface-variant text-xs">🏆 كود الإحالة الخاص بك</div>
                 <div class="flex items-center justify-center gap-2 flex-wrap mt-1">
-                    <code class="bg-surface-container-low/50 px-4 py-2 rounded-full border border-dashed border-primary text-primary text-sm font-bold">{{REFERRAL_CODE}}</code>
+                    <code class="bg-surface-container-low/50 px-4 py-2 rounded-full border border-dashed border-primary text-primary text-sm font-bold" id="referralCodeDisplay">VRT_XXXX</code>
                     <button class="btn-secondary text-xs py-1 px-3" id="copyRefCodeBtn">📋 نسخ</button>
                 </div>
             </div>
-            
+
             <button class="btn-primary w-full py-3" id="shareReferralBtn">📤 مشاركة رابط الدعوة</button>
-            <p class="text-on-surface-variant text-xs mt-3">لكل صديق يسجل عبر رابطك، تحصل أنت على <span class="text-primary font-bold">10 نقاط</span> وهو على <span class="text-primary font-bold">5 نقاط</span> مجانية.</p>
-            
-            <div class="mt-4">
+            <p class="text-on-surface-variant text-xs mt-3">يحصل المُحيل على <span class="text-primary font-bold">10%</span> من أرباح المدعو خلال أول 7 أيام.</p>
+
+            <div class="mt-4 text-right">
                 <h4 class="text-primary font-semibold text-sm mb-2">📋 قائمة المدعوين</h4>
-                <ul id="referredUsersList" class="list-none p-0 max-h-36 overflow-y-auto bg-surface-container-low/30 rounded-xl p-2">
+                <ul id="referredUsersList" class="list-none p-0 max-h-40 overflow-y-auto bg-surface-container-low/30 rounded-xl p-2">
                     <li class="text-on-surface-variant text-sm text-center py-2">لا يوجد مدعوون بعد</li>
                 </ul>
             </div>
         </div>
     </div>
 
-    <!-- ===== تبويب: الإدارة ===== -->
+    <!-- ================================ -->
+    <!-- ===== 5. الإعدادات والمحفظة (Settings) ===== -->
+    <!-- ================================ -->
+    <div class="tab-panel" id="tab-settings">
+        <div class="glass-panel">
+            <h2 class="text-primary font-bold text-xl mb-3">⚙️ الإعدادات والمحفظة</h2>
+
+            <!-- محرك اقتصاد العملة -->
+            <div class="mb-4">
+                <h3 class="text-primary font-semibold text-sm mb-2">📊 Vortex Economic Engine</h3>
+                <div class="grid grid-cols-2 gap-2 text-sm">
+                    <div class="bg-surface-container-low/30 p-2 rounded-xl text-center">
+                        <div class="text-on-surface-variant text-[10px]">السعر الحالي</div>
+                        <div class="text-primary font-bold" id="settingsPrice">$0.1461</div>
+                    </div>
+                    <div class="bg-surface-container-low/30 p-2 rounded-xl text-center">
+                        <div class="text-on-surface-variant text-[10px]">السعر المستهدف</div>
+                        <div class="text-secondary-fixed font-bold" id="settingsTargetPrice">$8.00</div>
+                    </div>
+                    <div class="bg-surface-container-low/30 p-2 rounded-xl text-center">
+                        <div class="text-on-surface-variant text-[10px]">الإمداد الكلي</div>
+                        <div class="text-on-surface font-bold" id="settingsTotalSupply">100,000,000 VRT</div>
+                    </div>
+                    <div class="bg-surface-container-low/30 p-2 rounded-xl text-center">
+                        <div class="text-on-surface-variant text-[10px]">السيولة المؤمنة</div>
+                        <div class="text-on-surface font-bold" id="settingsLiquidity">$15,000,000</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- قيود البروتوكول -->
+            <div class="mb-4">
+                <h3 class="text-primary font-semibold text-sm mb-2">🛡️ آليات منع التلاعب</h3>
+                <div class="grid grid-cols-2 gap-2 text-xs">
+                    <div class="bg-surface-container-low/30 p-2 rounded-xl text-center border border-white/5">
+                        <span class="material-symbols-outlined text-primary">trending_down</span>
+                        <p class="text-on-surface font-bold">أقصى بيع 0.5%</p>
+                    </div>
+                    <div class="bg-surface-container-low/30 p-2 rounded-xl text-center border border-white/5">
+                        <span class="material-symbols-outlined text-primary">lock_clock</span>
+                        <p class="text-on-surface font-bold">قفل سيولة 12 شهر</p>
+                    </div>
+                    <div class="bg-surface-container-low/30 p-2 rounded-xl text-center border border-white/5">
+                        <span class="material-symbols-outlined text-primary">hourglass_top</span>
+                        <p class="text-on-surface font-bold">Vesting 18 شهر</p>
+                    </div>
+                    <div class="bg-surface-container-low/30 p-2 rounded-xl text-center border border-white/5">
+                        <span class="material-symbols-outlined text-primary">local_fire_department</span>
+                        <p class="text-on-surface font-bold">حرق 1% لكل عملية بيع</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- التفضيلات -->
+            <div class="mb-4">
+                <h3 class="text-primary font-semibold text-sm mb-2">⚙️ التفضيلات</h3>
+                <div class="space-y-3">
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm">اللغة</span>
+                        <div class="flex bg-surface-container-lowest p-1 rounded-lg border border-white/5">
+                            <button class="px-3 py-1 rounded-md text-xs font-bold bg-primary-container text-on-primary-container">العربية</button>
+                            <button class="px-3 py-1 rounded-md text-xs font-bold text-on-surface-variant hover:text-primary">English</button>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm">الإشعارات</span>
+                        <button class="w-12 h-6 rounded-full bg-surface-container-high relative transition-colors border border-white/5" id="notifToggle">
+                            <div class="absolute left-1 top-1 w-4 h-4 bg-on-surface-variant rounded-full transition-all" id="notifThumb"></div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- الموارد -->
+            <div>
+                <h3 class="text-primary font-semibold text-sm mb-2">📚 الموارد</h3>
+                <div class="space-y-2">
+                    <a href="#" class="flex justify-between items-center glass-panel p-3 rounded-xl hover:border-primary/30 transition-colors">
+                        <span class="text-sm">📄 الورقة البيضاء</span>
+                        <span class="material-symbols-outlined text-on-surface-variant">chevron_right</span>
+                    </a>
+                    <a href="#" class="flex justify-between items-center glass-panel p-3 rounded-xl hover:border-primary/30 transition-colors">
+                        <span class="text-sm">🤖 بوت الدعم الفني</span>
+                        <span class="material-symbols-outlined text-on-surface-variant">chevron_right</span>
+                    </a>
+                    <a href="#" class="flex justify-between items-center glass-panel p-3 rounded-xl hover:border-primary/30 transition-colors">
+                        <span class="text-sm">📢 قناة التحديثات</span>
+                        <span class="material-symbols-outlined text-on-surface-variant">chevron_right</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================================ -->
+    <!-- ===== 6. الإدارة (Admin) ===== -->
+    <!-- ================================ -->
     <div class="tab-panel" id="tab-admin">
-        <div class="glass-panel rounded-2xl p-6 relative overflow-hidden">
-            <div class="absolute inset-0 inner-stroke pointer-events-none"></div>
-            <h2 class="font-headline-md text-headline-md text-primary mb-4">⚙️ لوحة الإدارة</h2>
-            
+        <div class="glass-panel">
+            <h2 class="text-primary font-bold text-xl mb-3">🔐 لوحة الإدارة</h2>
+
             <div class="grid grid-cols-3 gap-2 mb-4">
                 <div class="bg-surface-container-low/50 rounded-xl p-3 text-center border border-white/5">
                     <div class="text-on-surface-variant text-[10px]">👥 المستخدمين</div>
                     <div class="text-lg font-bold text-primary" id="adminTotalUsers">0</div>
                 </div>
                 <div class="bg-surface-container-low/50 rounded-xl p-3 text-center border border-white/5">
-                    <div class="text-on-surface-variant text-[10px]">⭐ النقاط</div>
-                    <div class="text-lg font-bold text-primary" id="adminTotalPoints">0</div>
+                    <div class="text-on-surface-variant text-[10px]">💰 إجمالي VRT</div>
+                    <div class="text-lg font-bold text-primary" id="adminTotalVRT">0</div>
                 </div>
                 <div class="bg-surface-container-low/50 rounded-xl p-3 text-center border border-primary/20">
-                    <div class="text-on-surface-variant text-[10px]">🟡 طلبات</div>
-                    <div class="text-lg font-bold text-primary" id="adminPendingPurchases">0</div>
+                    <div class="text-on-surface-variant text-[10px]">🟡 طلبات معلقة</div>
+                    <div class="text-lg font-bold text-primary" id="adminPendingCount">0</div>
                 </div>
             </div>
-            
+
             <div class="mb-4">
-                <h4 class="text-primary font-semibold text-sm mb-2">💲 تحديث سعر VTX</h4>
+                <h4 class="text-primary font-semibold text-sm mb-2">💲 تحديث السعر</h4>
                 <div class="flex flex-wrap gap-2">
-                    <input type="number" id="adminPriceInput" step="0.0001" value="0.1387" class="flex-1 min-w-[120px] bg-surface-container-low/50 border border-white/5 rounded-full p-2 text-on-surface outline-none">
-                    <button class="btn-primary text-sm py-2 px-4" id="adminSetPriceBtn">تحديث السعر</button>
+                    <input type="number" id="adminPriceInput" step="0.0001" value="0.1461" class="flex-1 min-w-[120px] bg-surface-container-low/50 border border-white/5 rounded-full p-2 text-on-surface outline-none">
+                    <button class="btn-primary text-sm py-2 px-4" id="adminSetPriceBtn">تحديث</button>
                 </div>
                 <div class="status-msg" id="adminPriceStatus"></div>
             </div>
-            
+
             <div class="mb-4">
-                <h4 class="text-primary font-semibold text-sm mb-2">🟡 طلبات شراء USDT المعلقة</h4>
-                <div id="adminPendingList" class="max-h-48 overflow-y-auto bg-surface-container-low/30 rounded-xl p-2">
+                <h4 class="text-primary font-semibold text-sm mb-2">🟡 طلبات الشراء المعلقة</h4>
+                <div id="adminPendingList" class="max-h-60 overflow-y-auto bg-surface-container-low/30 rounded-xl p-2 space-y-2">
                     <p class="text-on-surface-variant text-sm text-center py-2">لا توجد طلبات معلقة</p>
                 </div>
             </div>
-            
+
             <div>
-                <h4 class="text-primary font-semibold text-sm mb-2">👤 آخر المستخدمين المسجلين</h4>
-                <div id="adminUsersList" class="max-h-48 overflow-y-auto bg-surface-container-low/30 rounded-xl p-2">
-                    <p class="text-on-surface-variant text-sm text-center py-2">جاري التحميل...</p>
+                <h4 class="text-primary font-semibold text-sm mb-2">📨 إرسال إشعار جماعي</h4>
+                <div class="flex flex-wrap gap-2">
+                    <input type="text" id="adminBroadcastInput" placeholder="الرسالة..." class="flex-1 min-w-[150px] bg-surface-container-low/50 border border-white/5 rounded-full p-2 text-on-surface outline-none">
+                    <button class="btn-primary text-sm py-2 px-4" id="adminBroadcastBtn">إرسال</button>
                 </div>
+                <div class="status-msg" id="adminBroadcastStatus"></div>
             </div>
         </div>
     </div>
 
 </main>
 
-<!-- ===== BOTTOM NAV ===== -->
-<nav class="fixed bottom-0 w-full z-50 rounded-t-xl bg-surface-container-low/80 backdrop-blur-2xl border-t border-primary-container/20 shadow-[0_-8px_32px_0_rgba(0,0,0,0.8)] flex justify-around items-center px-4 py-3 pb-safe">
+<!-- ===== BOTTOM NAVIGATION ===== -->
+<nav class="fixed bottom-0 w-full z-50 rounded-t-xl bg-surface-container-low/80 backdrop-blur-2xl border-t border-primary-container/20 shadow-[0_-8px_32px_0_rgba(0,0,0,0.8)] flex justify-around items-center px-2 py-2 pb-safe">
     <button class="tab-btn flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors active:scale-90 duration-200" data-tab="mining">
         <span class="material-symbols-outlined">memory</span>
-        <span class="font-label-sm text-label-sm mt-1">التعدين</span>
+        <span class="text-[10px] font-bold mt-1">التعدين</span>
     </button>
     <button class="tab-btn flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors active:scale-90 duration-200" data-tab="presale">
         <span class="material-symbols-outlined">trending_up</span>
-        <span class="font-label-sm text-label-sm mt-1">الشراء</span>
+        <span class="text-[10px] font-bold mt-1">الشراء</span>
     </button>
-    <button class="tab-btn flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors active:scale-90 duration-200" data-tab="wallet">
-        <span class="material-symbols-outlined">account_balance_wallet</span>
-        <span class="font-label-sm text-label-sm mt-1">المحفظة</span>
+    <button class="tab-btn flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors active:scale-90 duration-200" data-tab="tasks">
+        <span class="material-symbols-outlined">assignment_turned_in</span>
+        <span class="text-[10px] font-bold mt-1">المهام</span>
     </button>
     <button class="tab-btn flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors active:scale-90 duration-200" data-tab="referrals">
         <span class="material-symbols-outlined">group</span>
-        <span class="font-label-sm text-label-sm mt-1">الإحالات</span>
+        <span class="text-[10px] font-bold mt-1">الإحالات</span>
+    </button>
+    <button class="tab-btn flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors active:scale-90 duration-200" data-tab="settings">
+        <span class="material-symbols-outlined">settings</span>
+        <span class="text-[10px] font-bold mt-1">الإعدادات</span>
     </button>
 </nav>
 
 <!-- ===== JAVASCRIPT ===== -->
 <script>
     // ==========================================
-    // 1. تبديل التبويبات
+    // متغيرات عامة
+    // ==========================================
+    let currentUser = null;
+    let miningInterval = null;
+    let timerInterval = null;
+    let isNotifOn = false;
+    let captchaAnswer = 7;
+
+    // ==========================================
+    // 1. عرض الإشعارات (Toast)
+    // ==========================================
+    function showToast(msg, isError = false) {
+        const existing = document.querySelector('.toast-msg');
+        if (existing) existing.remove();
+        const div = document.createElement('div');
+        div.className = 'toast-msg' + (isError ? ' error' : '');
+        div.innerText = msg;
+        document.body.appendChild(div);
+        setTimeout(() => div.remove(), 4000);
+    }
+
+    // ==========================================
+    // 2. توليد كابتشا عشوائية
+    // ==========================================
+    function generateCaptcha() {
+        const a = Math.floor(Math.random() * 9) + 1;
+        const b = Math.floor(Math.random() * 9) + 1;
+        captchaAnswer = a + b;
+        document.getElementById('captchaDisplay').innerText = `${a} + ${b} = ?`;
+    }
+    generateCaptcha();
+
+    // ==========================================
+    // 3. تبديل التبويبات
     // ==========================================
     document.querySelectorAll('.tab-btn').forEach(btn => {
         btn.addEventListener('click', function() {
@@ -591,73 +606,69 @@
             document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
             const target = document.getElementById('tab-' + tab);
             if (target) target.classList.add('active');
+            // تحميل بيانات خاصة بكل تبويب
+            if (tab === 'admin') loadAdminData();
+            if (tab === 'tasks') loadTasks();
+            if (tab === 'referrals') loadReferrals();
+            if (tab === 'presale') loadTransactionHistory();
+        });
+    });
+
+    // التبويبات الفرعية للشراء
+    document.querySelectorAll('.subtab-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const sub = this.dataset.subtab;
+            document.querySelectorAll('.subtab-btn').forEach(b => b.classList.remove('active-subtab'));
+            this.classList.add('active-subtab');
+            document.querySelectorAll('[id^="subtab-"]').forEach(el => el.classList.add('hidden'));
+            document.getElementById('subtab-' + sub).classList.remove('hidden');
+            if (sub === 'purchase-history') loadTransactionHistory();
         });
     });
 
     // ==========================================
-    // 2. عرض الإشعارات (Toast)
+    // 4. نظام المصادقة
     // ==========================================
-    function showToast(msg, isError = false) {
-        const existing = document.querySelector('.toast-msg');
-        if (existing) existing.remove();
-        const div = document.createElement('div');
-        div.className = 'toast-msg fixed bottom-24 left-1/2 transform -translate-x-1/2 bg-black/80 text-white p-3 rounded-xl border ' + (isError ? 'border-red-500' : 'border-primary/50') + ' text-sm z-50 backdrop-blur-md max-w-xs text-center';
-        div.innerText = msg;
-        document.body.appendChild(div);
-        setTimeout(() => div.remove(), 3500);
-    }
-
-    // ==========================================
-    // 3. جلب الحالة وتحديث الواجهة
-    // ==========================================
-    const TELEGRAM_ID = '{{TELEGRAM_ID}}';
-
-    async function fetchAndUpdate() {
+    async function checkAuth() {
         try {
-            const res = await fetch('/api/status?telegram_id=' + TELEGRAM_ID, { credentials: 'include' });
-            const data = await res.json();
-            if (data.error) {
-                document.getElementById('miningStatus').innerHTML = '⚠️ ' + data.error;
-                return;
-            }
-
-            // تحديث العداد
-            document.getElementById('totalUsersDisplay').innerText = data.total_users || 0;
-            document.getElementById('targetProgress').style.width = Math.min((data.total_users / 20000) * 100, 100) + '%';
-            document.getElementById('headerVtxBalance').innerText = data.points || 0;
-            document.getElementById('walletVtx').innerText = data.points || 0;
-            document.getElementById('referralsCount').innerText = data.referrals_count || 0;
-            document.getElementById('headerUsername').innerText = '@' + (data.username || 'زائر');
-
-            // حالة التعدين
-            const statusEl = document.getElementById('miningStatus');
-            if (data.mining_open) {
-                statusEl.innerHTML = '<span style="color:#2ecc71;">✅ التعدين مفتوح</span>';
-                document.getElementById('mineBtn').disabled = false;
+            const res = await fetch('/api/auth/me', { credentials: 'include' });
+            if (res.ok) {
+                const data = await res.json();
+                currentUser = data;
+                document.getElementById('loginOverlay').classList.add('hidden');
+                updateUI(data);
+                return true;
             } else {
-                statusEl.innerHTML = '<span style="color:#f39c12;">⏳ التعدين سيُفتح عند اكتمال العدد (20,000 مستخدم)</span>';
-                document.getElementById('mineBtn').disabled = true;
-            }
-
-            // سعر الشراء المسبق
-            if (data.vtx_price) {
-                document.getElementById('presalePrice').innerHTML = data.vtx_price + ' USDT';
-            }
-
-            // إظهار تبويب الإدارة للمديرين
-            if (data.role === 'admin') {
-                document.getElementById('adminTabBtn').style.display = 'inline-block';
-                loadAdminData();
-            } else {
-                document.getElementById('adminTabBtn').style.display = 'none';
+                document.getElementById('loginOverlay').classList.remove('hidden');
+                return false;
             }
         } catch (e) {
-            console.error('فشل التحديث:', e);
+            document.getElementById('loginOverlay').classList.remove('hidden');
+            return false;
         }
     }
 
+    function updateUI(user) {
+        document.getElementById('headerBalance').innerText = (user.balance_vrt || 0).toFixed(2) + ' VRT';
+        document.getElementById('miningBalance').innerText = (user.balance_vrt || 0).toFixed(4) + ' VRT';
+        const price = parseFloat(document.getElementById('presalePrice').innerText) || 0.1461;
+        document.getElementById('miningBalanceUsd').innerText = ((user.balance_vrt || 0) * price).toFixed(2);
+        // تحديث معلومات الإحالة
+        if (user.referral_code) {
+            document.getElementById('referralCodeDisplay').innerText = user.referral_code;
+        }
+        // إظهار تبويب الإدارة للمديرين
+        if (user.role === 'admin') {
+            document.getElementById('adminTabBtn').style.display = 'inline-block';
+        } else {
+            document.getElementById('adminTabBtn').style.display = 'none';
+        }
+        // تحديث حالة التعدين
+        updateMiningStatus();
+    }
+
     // ==========================================
-    // 4. نظام تسجيل الدخول والتسجيل
+    // 5. تسجيل الدخول والتسجيل
     // ==========================================
     document.getElementById('loginForm')?.addEventListener('submit', async (e) => {
         e.preventDefault();
@@ -665,7 +676,6 @@
         const password = document.getElementById('loginPassword').value;
         const errorDiv = document.getElementById('loginError');
         errorDiv.innerText = '';
-        
         try {
             const res = await fetch('/api/auth/login', {
                 method: 'POST',
@@ -676,158 +686,338 @@
             const data = await res.json();
             if (data.success) {
                 showToast('✅ تم تسجيل الدخول بنجاح');
-                document.getElementById('loginOverlay').classList.add('hidden');
-                document.getElementById('headerUsername').innerText = '@' + data.user.username;
-                document.getElementById('headerVtxBalance').innerText = data.user.points || 0;
-                document.getElementById('walletVtx').innerText = data.user.points || 0;
-                await fetchAndUpdate();
+                await checkAuth();
             } else {
                 errorDiv.innerText = '❌ ' + data.message;
             }
-        } catch (e) { 
-            errorDiv.innerText = '⚠️ خطأ في الاتصال';
-        }
+        } catch (e) { errorDiv.innerText = '⚠️ خطأ في الاتصال'; }
     });
 
     document.getElementById('signupForm')?.addEventListener('submit', async (e) => {
         e.preventDefault();
-        const name = document.getElementById('signupName').value;
-        const phone = document.getElementById('signupPhone').value;
+        const username = document.getElementById('signupName').value;
         const email = document.getElementById('signupEmail').value;
         const password = document.getElementById('signupPassword').value;
+        const captchaAnswerVal = document.getElementById('captchaAnswer').value;
+        const referral = document.getElementById('signupReferral').value;
         const errorDiv = document.getElementById('signupError');
         errorDiv.innerText = '';
-        
         try {
             const res = await fetch('/api/auth/register', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ name, phone, email, password })
+                credentials: 'include',
+                body: JSON.stringify({
+                    username,
+                    email,
+                    password,
+                    captcha_answer: captchaAnswerVal,
+                    captcha_expected: captchaAnswer,
+                    referral_code: referral
+                })
             });
             const data = await res.json();
             if (data.success) {
-                showToast('✅ تم إنشاء الحساب بنجاح، سجل دخولك الآن');
-                document.getElementById('tabLogin').checked = true;
-                document.getElementById('signupName').value = '';
-                document.getElementById('signupPhone').value = '';
-                document.getElementById('signupEmail').value = '';
-                document.getElementById('signupPassword').value = '';
-                errorDiv.innerText = '';
+                showToast('✅ تم إنشاء الحساب بنجاح');
+                await checkAuth();
             } else {
                 errorDiv.innerText = '❌ ' + data.message;
+                generateCaptcha();
             }
-        } catch (e) { 
-            errorDiv.innerText = '⚠️ خطأ في الاتصال';
-        }
+        } catch (e) { errorDiv.innerText = '⚠️ خطأ في الاتصال'; }
+    });
+
+    document.getElementById('logoutBtn')?.addEventListener('click', async () => {
+        await fetch('/api/auth/logout', { method: 'POST', credentials: 'include' });
+        currentUser = null;
+        document.getElementById('loginOverlay').classList.remove('hidden');
+        showToast('تم تسجيل الخروج');
     });
 
     // ==========================================
-    // 5. زر التعدين
+    // 6. نظام التعدين
     // ==========================================
-    document.getElementById('mineBtn')?.addEventListener('click', async function() {
-        this.disabled = true;
-        this.innerText = '⏳ جارٍ...';
+    async function updateMiningStatus() {
         try {
-            const res = await fetch('/api/click', {
+            const res = await fetch('/api/mining/status', { credentials: 'include' });
+            const data = await res.json();
+            if (data.error) {
+                document.getElementById('miningMessage').innerText = '⚠️ ' + data.error;
+                return;
+            }
+            // تحديث العداد
+            document.getElementById('totalUsersDisplay').innerText = data.current_seats || 0;
+            const remaining = (data.total_seats || 100000) - (data.current_seats || 0);
+            document.getElementById('remainingSeats').innerText = remaining.toLocaleString();
+            const progress = ((data.current_seats || 0) / (data.total_seats || 100000)) * 100;
+            document.getElementById('seatsProgress').style.width = Math.min(progress, 100) + '%';
+
+            // تحديث الرصيد
+            if (data.balance_vrt !== undefined) {
+                document.getElementById('miningBalance').innerText = data.balance_vrt.toFixed(4) + ' VRT';
+                document.getElementById('headerBalance').innerText = data.balance_vrt.toFixed(2) + ' VRT';
+                const price = parseFloat(document.getElementById('presalePrice').innerText) || 0.1461;
+                document.getElementById('miningBalanceUsd').innerText = (data.balance_vrt * price).toFixed(2);
+            }
+
+            // حالة التعدين
+            const actionArea = document.getElementById('miningActionArea');
+            const timerDiv = document.getElementById('miningTimer');
+            const timerDisplay = document.getElementById('timerDisplay');
+            const msgDiv = document.getElementById('miningMessage');
+
+            if (data.mining_open === false) {
+                actionArea.innerHTML = '<p class="text-center text-on-surface-variant">⛔ التعدين متوقف حالياً</p>';
+                timerDiv.classList.add('hidden');
+                return;
+            }
+
+            if (data.is_mining_active && data.remaining_seconds !== null && data.remaining_seconds > 0) {
+                // توجد دورة نشطة
+                actionArea.innerHTML = '';
+                timerDiv.classList.remove('hidden');
+                startTimer(data.remaining_seconds, timerDisplay);
+                msgDiv.innerText = '⏳ جارٍ التعدين...';
+            } else if (data.is_mining_active && data.remaining_seconds === 0) {
+                // انتهت الدورة
+                actionArea.innerHTML = `<button class="btn-primary w-full py-3 text-lg" id="startMiningBtn">⚡ ابدأ تعدين الدورة الجديدة</button>`;
+                timerDiv.classList.add('hidden');
+                msgDiv.innerText = '✅ انتهت الدورة السابقة، ابدأ دورة جديدة!';
+                // إعادة ربط الزر
+                document.getElementById('startMiningBtn')?.addEventListener('click', startMining);
+            } else {
+                // لا توجد دورة نشطة
+                actionArea.innerHTML = `<button class="btn-primary w-full py-3 text-lg" id="startMiningBtn">⚡ ابدأ تعدين الدورة الجديدة</button>`;
+                timerDiv.classList.add('hidden');
+                msgDiv.innerText = '';
+                document.getElementById('startMiningBtn')?.addEventListener('click', startMining);
+            }
+        } catch (e) {
+            console.error('فشل تحديث التعدين:', e);
+        }
+    }
+
+    function startTimer(seconds, display) {
+        if (timerInterval) clearInterval(timerInterval);
+        let remaining = seconds;
+        timerInterval = setInterval(() => {
+            if (remaining <= 0) {
+                clearInterval(timerInterval);
+                updateMiningStatus();
+                return;
+            }
+            const hours = Math.floor(remaining / 3600);
+            const mins = Math.floor((remaining % 3600) / 60);
+            const secs = remaining % 60;
+            display.innerText = `${String(hours).padStart(2,'0')}:${String(mins).padStart(2,'0')}:${String(secs).padStart(2,'0')}`;
+            remaining--;
+        }, 1000);
+    }
+
+    async function startMining() {
+        const btn = document.getElementById('startMiningBtn');
+        if (btn) btn.disabled = true;
+        try {
+            const res = await fetch('/api/mining/start', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
                 credentials: 'include',
-                body: JSON.stringify({ telegram_id: TELEGRAM_ID })
+                headers: { 'Content-Type': 'application/json' }
             });
             const data = await res.json();
             if (data.success) {
-                showToast('✅ +1 نقطة');
-                fetchAndUpdate();
+                showToast('✅ بدأت دورة التعدين!');
+                updateMiningStatus();
             } else {
-                showToast(data.message || 'فشل', true);
+                showToast('❌ ' + data.message, true);
+                if (btn) btn.disabled = false;
             }
-        } catch (e) { showToast('⚠️ خطأ في الاتصال', true); }
-        this.disabled = false;
-        this.innerText = '⛏️ تعدين (يدوي)';
-    });
-
-    // ==========================================
-    // 6. معززات التعدين
-    // ==========================================
-    document.querySelectorAll('.boost-btn').forEach(btn => {
-        btn.addEventListener('click', async function() {
-            const boostType = this.dataset.boost;
-            try {
-                const res = await fetch('/api/buy_boost', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    credentials: 'include',
-                    body: JSON.stringify({ telegram_id: TELEGRAM_ID, boost_type: boostType })
-                });
-                const data = await res.json();
-                if (data.success) {
-                    showToast('✅ ' + data.message);
-                    fetchAndUpdate();
-                } else {
-                    showToast(data.message || 'فشل', true);
-                }
-            } catch (e) { showToast('⚠️ خطأ في الاتصال', true); }
-        });
-    });
+        } catch (e) {
+            showToast('⚠️ خطأ في الاتصال', true);
+            if (btn) btn.disabled = false;
+        }
+    }
 
     // ==========================================
     // 7. الشراء المسبق
     // ==========================================
-    document.getElementById('copyPresaleAddressBtn')?.addEventListener('click', function() {
-        const address = document.querySelector('code')?.innerText || '';
-        navigator.clipboard.writeText(address).then(() => showToast('✅ تم نسخ العنوان'));
+    document.getElementById('copyAddressBtn')?.addEventListener('click', function() {
+        const addr = document.getElementById('walletAddressDisplay').innerText;
+        navigator.clipboard.writeText(addr).then(() => showToast('✅ تم نسخ العنوان'));
     });
 
-    const usdtInput = document.getElementById('presaleUsdtInput');
-    const vtxOutput = document.getElementById('presaleVtxOutput');
-    usdtInput?.addEventListener('input', function() {
+    document.getElementById('presaleUsdtInput')?.addEventListener('input', function() {
         const usdt = parseFloat(this.value);
-        const price = parseFloat(document.getElementById('presalePrice').innerText);
-        if (!isNaN(usdt) && usdt > 0 && !isNaN(price) && price > 0) {
-            vtxOutput.value = (usdt / price).toFixed(2);
+        const price = parseFloat(document.getElementById('presalePrice').innerText) || 0.1461;
+        const output = document.getElementById('presaleVtxOutput');
+        if (!isNaN(usdt) && usdt > 0 && price > 0) {
+            output.value = (usdt / price).toFixed(2);
         } else {
-            vtxOutput.value = '';
+            output.value = '';
         }
     });
 
     document.getElementById('presaleConfirmBtn')?.addEventListener('click', async function() {
-        const amount = parseFloat(usdtInput?.value);
-        const txid = document.getElementById('presaleTxidInput')?.value.trim();
+        const amount = parseFloat(document.getElementById('presaleUsdtInput').value);
+        const txid = document.getElementById('presaleTxidInput').value.trim();
+        const screenshot = document.getElementById('presaleScreenshot').files[0];
         const statusDiv = document.getElementById('presaleStatus');
-        if (!amount || amount <= 0) { statusDiv.innerHTML = '<span style="color:#e74c3c;">⚠️ أدخل مبلغاً صحيحاً.</span>'; return; }
-        if (!txid || txid.length < 5) { statusDiv.innerHTML = '<span style="color:#e74c3c;">⚠️ أدخل رقم المعاملة (TXID).</span>'; return; }
+
+        if (!amount || amount < 10 || amount > 5000) {
+            statusDiv.innerHTML = '<span style="color:#ff6b6b;">⚠️ المبلغ يجب أن يكون بين 10 و 5000 USDT</span>';
+            return;
+        }
+        if (!txid || txid.length < 10) {
+            statusDiv.innerHTML = '<span style="color:#ff6b6b;">⚠️ أدخل رقم معاملة صحيح (TXID)</span>';
+            return;
+        }
+
         statusDiv.innerHTML = '<span style="color:#f5c842;">⏳ جاري إرسال الطلب...</span>';
         this.disabled = true;
+
+        const formData = new FormData();
+        formData.append('amount_usdt', amount);
+        formData.append('txid', txid);
+        if (screenshot) formData.append('screenshot', screenshot);
+
         try {
-            const res = await fetch('/api/purchase', {
+            const res = await fetch('/api/purchase/submit', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
                 credentials: 'include',
-                body: JSON.stringify({ telegram_id: TELEGRAM_ID, amount, txid })
+                body: formData
             });
             const data = await res.json();
             if (data.success) {
                 statusDiv.innerHTML = '<span style="color:#2ecc71;">✅ ' + data.message + '</span>';
-                usdtInput.value = '';
+                document.getElementById('presaleUsdtInput').value = '';
                 document.getElementById('presaleTxidInput').value = '';
-                vtxOutput.value = '';
+                document.getElementById('presaleVtxOutput').value = '';
+                document.getElementById('presaleScreenshot').value = '';
+                // تحديث السجل
+                loadTransactionHistory();
             } else {
-                statusDiv.innerHTML = '<span style="color:#e74c3c;">❌ ' + data.message + '</span>';
+                statusDiv.innerHTML = '<span style="color:#ff6b6b;">❌ ' + data.message + '</span>';
             }
-        } catch (e) { statusDiv.innerHTML = '<span style="color:#e74c3c;">❌ خطأ في الاتصال</span>'; }
+        } catch (e) {
+            statusDiv.innerHTML = '<span style="color:#ff6b6b;">❌ خطأ في الاتصال</span>';
+        }
         this.disabled = false;
     });
 
+    async function loadTransactionHistory() {
+        try {
+            const res = await fetch('/api/purchase/history', { credentials: 'include' });
+            const data = await res.json();
+            const container = document.getElementById('transactionsList');
+            if (!data.transactions || data.transactions.length === 0) {
+                container.innerHTML = '<p class="text-on-surface-variant text-center text-sm py-4">لا توجد معاملات</p>';
+                return;
+            }
+            container.innerHTML = data.transactions.map(t => `
+                <div class="glass-panel p-3 rounded-xl flex justify-between items-center text-sm">
+                    <div>
+                        <div class="font-bold">${t.amount_usdt} USDT → ${t.amount_vrt.toFixed(2)} VRT</div>
+                        <div class="text-[10px] text-on-surface-variant">${new Date(t.created_at).toLocaleString()}</div>
+                    </div>
+                    <div>
+                        <span class="status-badge ${t.status === 'pending' ? 'badge-pending' : t.status === 'approved' ? 'badge-approved' : 'badge-rejected'}">
+                            ${t.status === 'pending' ? 'قيد المراجعة' : t.status === 'approved' ? 'مقبول ✅' : 'مرفوض ❌'}
+                        </span>
+                        ${t.rejection_reason ? `<div class="text-[10px] text-red-400 mt-1">${t.rejection_reason}</div>` : ''}
+                    </div>
+                </div>
+            `).join('');
+        } catch (e) { /* تجاهل */ }
+    }
+
     // ==========================================
-    // 8. الإحالات
+    // 8. المهام
     // ==========================================
+    async function loadTasks() {
+        try {
+            const res = await fetch('/api/tasks', { credentials: 'include' });
+            const data = await res.json();
+            const container = document.getElementById('tasksList');
+            if (!data.tasks || data.tasks.length === 0) {
+                container.innerHTML = '<p class="text-on-surface-variant text-center text-sm py-4">لا توجد مهام حالياً</p>';
+                return;
+            }
+            container.innerHTML = data.tasks.map(task => `
+                <div class="glass-panel p-3 rounded-xl flex justify-between items-center">
+                    <div>
+                        <div class="font-semibold">${task.title}</div>
+                        <div class="text-[10px] text-on-surface-variant">+${task.reward_vrt} VRT</div>
+                    </div>
+                    <button class="btn-secondary text-xs py-1 px-3 task-verify-btn" data-task-id="${task._id}">🔄 تحقق</button>
+                </div>
+            `).join('');
+
+            // ربط أزرار التحقق
+            document.querySelectorAll('.task-verify-btn').forEach(btn => {
+                btn.addEventListener('click', async function() {
+                    const taskId = this.dataset.taskId;
+                    this.disabled = true;
+                    this.innerText = '⏳ جارٍ...';
+                    try {
+                        const res = await fetch('/api/tasks/verify', {
+                            method: 'POST',
+                            credentials: 'include',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ task_id: taskId })
+                        });
+                        const data = await res.json();
+                        if (data.success) {
+                            showToast('✅ ' + data.message);
+                            this.innerText = '✅ تم';
+                            this.style.borderColor = '#2ecc71';
+                            this.style.color = '#2ecc71';
+                            // تحديث الرصيد
+                            updateMiningStatus();
+                        } else {
+                            showToast('❌ ' + data.message, true);
+                            this.innerText = '🔄 تحقق';
+                            this.disabled = false;
+                        }
+                    } catch (e) {
+                        showToast('⚠️ خطأ في الاتصال', true);
+                        this.innerText = '🔄 تحقق';
+                        this.disabled = false;
+                    }
+                });
+            });
+        } catch (e) { /* تجاهل */ }
+    }
+
+    // ==========================================
+    // 9. الإحالات
+    // ==========================================
+    async function loadReferrals() {
+        try {
+            const res = await fetch('/api/referrals', { credentials: 'include' });
+            const data = await res.json();
+            if (data.error) return;
+            document.getElementById('referralsCount').innerText = data.total_referrals || 0;
+            document.getElementById('referralsEarnings').innerText = (data.total_earnings || 0).toFixed(2) + ' VRT';
+            const list = document.getElementById('referredUsersList');
+            if (data.referred_users && data.referred_users.length > 0) {
+                list.innerHTML = data.referred_users.map(u => `
+                    <li class="flex justify-between text-sm py-1 border-b border-white/5">
+                        <span>${u.username}</span>
+                        <span class="text-primary">${u.balance.toFixed(2)} VRT</span>
+                    </li>
+                `).join('');
+            } else {
+                list.innerHTML = '<li class="text-on-surface-variant text-sm text-center py-2">لا يوجد مدعوون بعد</li>';
+            }
+        } catch (e) { /* تجاهل */ }
+    }
+
     document.getElementById('copyRefCodeBtn')?.addEventListener('click', function() {
-        const code = document.querySelector('#tab-referrals code')?.innerText || '';
-        navigator.clipboard.writeText(code).then(() => showToast('✅ تم نسخ الكود'));
+        const code = document.getElementById('referralCodeDisplay').innerText;
+        navigator.clipboard.writeText(code).then(() => showToast('✅ تم نسخ الكود: ' + code));
     });
 
     document.getElementById('shareReferralBtn')?.addEventListener('click', function() {
-        const code = document.querySelector('#tab-referrals code')?.innerText || '';
+        const code = document.getElementById('referralCodeDisplay').innerText;
         const url = `https://t.me/YourBotUsername?start=${code}`;
         if (navigator.share) {
             navigator.share({ title: 'انضم إلى Vortex', text: `🚀 استخدم كود الدعوة: ${code}`, url });
@@ -837,44 +1027,116 @@
     });
 
     // ==========================================
-    // 9. الإدارة
+    // 10. الإعدادات (Notifications Toggle)
+    // ==========================================
+    document.getElementById('notifToggle')?.addEventListener('click', function() {
+        isNotifOn = !isNotifOn;
+        const thumb = document.getElementById('notifThumb');
+        if (isNotifOn) {
+            this.classList.remove('bg-surface-container-high');
+            this.classList.add('bg-primary-container');
+            thumb.classList.remove('left-1', 'bg-on-surface-variant');
+            thumb.classList.add('left-7', 'bg-on-primary-container');
+            showToast('✅ تم تفعيل الإشعارات');
+        } else {
+            this.classList.add('bg-surface-container-high');
+            this.classList.remove('bg-primary-container');
+            thumb.classList.add('left-1', 'bg-on-surface-variant');
+            thumb.classList.remove('left-7', 'bg-on-primary-container');
+            showToast('🔕 تم إيقاف الإشعارات');
+        }
+    });
+
+    // ==========================================
+    // 11. لوحة الإدارة
     // ==========================================
     async function loadAdminData() {
         try {
-            const res = await fetch('/admin/dashboard-data', { credentials: 'include' });
+            const res = await fetch('/admin/stats', { credentials: 'include' });
             const data = await res.json();
-            if (!data.error) {
-                document.getElementById('adminTotalUsers').innerText = data.totalUsers || 0;
-                document.getElementById('adminTotalPoints').innerText = data.totalPoints || 0;
-                document.getElementById('adminPendingPurchases').innerText = data.pendingCount || 0;
+            if (data.error) return;
+            document.getElementById('adminTotalUsers').innerText = data.totalUsers || 0;
+            document.getElementById('adminTotalVRT').innerText = (data.totalVRT || 0).toFixed(0);
+            document.getElementById('adminPendingCount').innerText = data.pendingPurchases || 0;
+            document.getElementById('adminPriceInput').value = data.vtx_price || 0.1461;
+            // جلب الطلبات المعلقة
+            loadPendingPurchases();
+        } catch (e) { /* تجاهل */ }
+    }
 
-                const usersList = document.getElementById('adminUsersList');
-                if (data.users && data.users.length) {
-                    usersList.innerHTML = data.users.map(u => 
-                        `<div style="display:flex; justify-content:space-between; padding:0.3rem 0.5rem; border-bottom:1px solid rgba(255,255,255,0.05); font-size:0.85rem;">
-                            <span>${u.username}</span>
-                            <span style="color:#f5c842;">${u.points} VTX</span>
-                        </div>`
-                    ).join('');
-                } else {
-                    usersList.innerHTML = '<p style="color:#6a5f4e; text-align:center;">لا يوجد مستخدمون</p>';
-                }
-
-                const pendingList = document.getElementById('adminPendingList');
-                if (data.pendingPurchases && data.pendingPurchases.length) {
-                    pendingList.innerHTML = data.pendingPurchases.map(p => 
-                        `<div style="display:flex; justify-content:space-between; padding:0.3rem 0.5rem; border-bottom:1px solid rgba(255,255,255,0.05); font-size:0.8rem; align-items:center;">
-                            <span>${p.username} - ${p.amount} USDT</span>
-                            <span>
-                                <button onclick="approvePurchase('${p._id}')" style="background:#2ecc71; border:none; color:#000; padding:0.1rem 0.8rem; border-radius:2rem; cursor:pointer; font-size:0.7rem;">✅</button>
-                                <button onclick="rejectPurchase('${p._id}')" style="background:#e74c3c; border:none; color:#fff; padding:0.1rem 0.8rem; border-radius:2rem; cursor:pointer; font-size:0.7rem;">❌</button>
-                            </span>
-                        </div>`
-                    ).join('');
-                } else {
-                    pendingList.innerHTML = '<p style="color:#6a5f4e; text-align:center;">لا توجد طلبات معلقة</p>';
-                }
+    async function loadPendingPurchases() {
+        try {
+            const res = await fetch('/admin/pending_purchases', { credentials: 'include' });
+            const data = await res.json();
+            const container = document.getElementById('adminPendingList');
+            if (data.error || !data.transactions || data.transactions.length === 0) {
+                container.innerHTML = '<p class="text-on-surface-variant text-sm text-center py-2">لا توجد طلبات معلقة</p>';
+                return;
             }
+            container.innerHTML = data.transactions.map(t => `
+                <div class="glass-panel p-3 rounded-xl text-sm space-y-2">
+                    <div class="flex justify-between">
+                        <span><span class="text-on-surface-variant">المستخدم:</span> ${t.user_id?.username || 'غير معروف'}</span>
+                        <span><span class="text-on-surface-variant">المبلغ:</span> ${t.amount_usdt} USDT → ${t.amount_vrt.toFixed(2)} VRT</span>
+                    </div>
+                    <div class="flex justify-between text-xs">
+                        <span class="text-on-surface-variant break-all">TXID: ${t.txid}</span>
+                        ${t.warning_flag ? '<span class="text-red-400 font-bold">⚠️ تحذير: TxID لا يخص المحفظة</span>' : ''}
+                    </div>
+                    <div class="flex gap-2">
+                        <button class="btn-primary text-xs py-1 px-3 approve-btn" data-id="${t._id}">✅ قبول</button>
+                        <button class="btn-danger text-xs py-1 px-3 reject-btn" data-id="${t._id}">❌ رفض</button>
+                    </div>
+                </div>
+            `).join('');
+
+            // ربط أزرار القبول والرفض
+            document.querySelectorAll('.approve-btn').forEach(btn => {
+                btn.addEventListener('click', async function() {
+                    const id = this.dataset.id;
+                    if (!confirm('تأكيد قبول هذه المعاملة؟')) return;
+                    try {
+                        const res = await fetch('/admin/approve_purchase', {
+                            method: 'POST',
+                            credentials: 'include',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ transaction_id: id })
+                        });
+                        const data = await res.json();
+                        if (data.success) {
+                            showToast('✅ تم القبول');
+                            loadPendingPurchases();
+                            loadAdminData();
+                        } else {
+                            showToast('❌ ' + data.message, true);
+                        }
+                    } catch (e) { showToast('⚠️ خطأ', true); }
+                });
+            });
+
+            document.querySelectorAll('.reject-btn').forEach(btn => {
+                btn.addEventListener('click', async function() {
+                    const id = this.dataset.id;
+                    const reason = prompt('أدخل سبب الرفض:');
+                    if (!reason || reason.length < 3) return showToast('⚠️ سبب الرفض مطلوب', true);
+                    try {
+                        const res = await fetch('/admin/reject_purchase', {
+                            method: 'POST',
+                            credentials: 'include',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ transaction_id: id, reason })
+                        });
+                        const data = await res.json();
+                        if (data.success) {
+                            showToast('❌ تم الرفض');
+                            loadPendingPurchases();
+                            loadAdminData();
+                        } else {
+                            showToast('❌ ' + data.message, true);
+                        }
+                    } catch (e) { showToast('⚠️ خطأ', true); }
+                });
+            });
         } catch (e) { /* تجاهل */ }
     }
 
@@ -884,54 +1146,82 @@
         try {
             const res = await fetch('/admin/set_price', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
                 credentials: 'include',
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ price })
             });
             const data = await res.json();
             if (data.success) {
                 showToast('✅ تم تحديث السعر إلى ' + price);
-                document.getElementById('presalePrice').innerHTML = price + ' USDT';
+                document.getElementById('presalePrice').innerText = price + ' USDT';
+                document.getElementById('settingsPrice').innerText = '$' + price;
             } else {
                 showToast('❌ ' + data.message, true);
             }
-        } catch (e) { showToast('⚠️ خطأ في الاتصال', true); }
+        } catch (e) { showToast('⚠️ خطأ', true); }
     });
 
-    window.approvePurchase = async (id) => {
+    document.getElementById('adminBroadcastBtn')?.addEventListener('click', async function() {
+        const message = document.getElementById('adminBroadcastInput').value.trim();
+        if (!message || message.length < 3) return showToast('⚠️ الرسالة قصيرة جداً', true);
         try {
-            await fetch('/admin/approve_purchase', { 
-                method: 'POST', 
-                headers: { 'Content-Type': 'application/json' }, 
+            const res = await fetch('/admin/broadcast', {
+                method: 'POST',
                 credentials: 'include',
-                body: JSON.stringify({ purchase_id: id }) 
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message })
             });
-            showToast('✅ تمت الموافقة');
-            loadAdminData();
+            const data = await res.json();
+            if (data.success) {
+                showToast('✅ تم إرسال الإشعار للجميع');
+                document.getElementById('adminBroadcastInput').value = '';
+            } else {
+                showToast('❌ ' + data.message, true);
+            }
         } catch (e) { showToast('⚠️ خطأ', true); }
-    };
-
-    window.rejectPurchase = async (id) => {
-        try {
-            await fetch('/admin/reject_purchase', { 
-                method: 'POST', 
-                headers: { 'Content-Type': 'application/json' }, 
-                credentials: 'include',
-                body: JSON.stringify({ purchase_id: id }) 
-            });
-            showToast('❌ تم الرفض');
-            loadAdminData();
-        } catch (e) { showToast('⚠️ خطأ', true); }
-    };
-
-    document.querySelector('[data-tab="admin"]')?.addEventListener('click', loadAdminData);
+    });
 
     // ==========================================
-    // 10. التحديث التلقائي
+    // 12. تحديث تلقائي
     // ==========================================
-    fetchAndUpdate();
-    setInterval(fetchAndUpdate, 15000);
+    async function autoUpdate() {
+        if (document.getElementById('tab-mining').classList.contains('active')) {
+            await updateMiningStatus();
+        }
+        if (document.getElementById('tab-presale').classList.contains('active')) {
+            await loadTransactionHistory();
+        }
+        if (document.getElementById('tab-admin').classList.contains('active') && currentUser?.role === 'admin') {
+            await loadAdminData();
+        }
+    }
+
+    // ==========================================
+    // 13. بدء التطبيق
+    // ==========================================
+    document.addEventListener('DOMContentLoaded', async function() {
+        await checkAuth();
+        // تحميل البيانات الأولية للتبويب النشط
+        await updateMiningStatus();
+        // التحديث التلقائي كل 15 ثانية
+        setInterval(autoUpdate, 15000);
+        // تحديث سعر العملة من الإعدادات
+        try {
+            const res = await fetch('/admin/stats', { credentials: 'include' });
+            const data = await res.json();
+            if (data && data.vtx_price) {
+                document.getElementById('presalePrice').innerText = data.vtx_price + ' USDT';
+                document.getElementById('settingsPrice').innerText = '$' + data.vtx_price;
+            }
+            if (data && data.totalUsers !== undefined) {
+                document.getElementById('totalUsersDisplay').innerText = data.totalUsers || 0;
+            }
+        } catch (e) { /* تجاهل */ }
+    });
+
+    // إظهار التبويب الفرعي الأول عند تحميل الشراء
+    document.querySelector('.subtab-btn')?.click();
 </script>
 
 </body>
-                    </html>
+    </html>
