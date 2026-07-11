@@ -206,13 +206,6 @@
         }
         .price-up { color: #2ecc71; }
         .price-down { color: #ff6b6b; }
-        .price-flash {
-            animation: priceFlash 0.5s ease;
-        }
-        @keyframes priceFlash {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
         .presale-input-group {
             display: flex;
             align-items: center;
@@ -241,6 +234,94 @@
             font-size: 0.65rem;
             white-space: nowrap;
         }
+        .admin-purchase-item {
+            background: rgba(20,20,20,0.5);
+            border: 1px solid rgba(212,175,55,0.1);
+            border-radius: 1rem;
+            padding: 0.8rem;
+            margin-bottom: 0.5rem;
+        }
+        .admin-purchase-item .header {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+        }
+        .admin-purchase-item .details {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.7rem;
+            color: #8a7e6b;
+            margin: 0.3rem 0;
+        }
+        .admin-purchase-item .actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 0.3rem;
+        }
+        .admin-purchase-item .actions button {
+            font-size: 0.7rem;
+            padding: 0.2rem 0.8rem;
+            border-radius: 2rem;
+            border: none;
+            cursor: pointer;
+        }
+        .admin-purchase-item .actions .approve { background: #2ecc71; color: #000; }
+        .admin-purchase-item .actions .reject { background: #e74c3c; color: #fff; }
+        /* حاوية الإعلان */
+        #adContainer {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1000;
+            background: rgba(0,0,0,0.92);
+            backdrop-filter: blur(8px);
+        }
+        #adContainer .ad-box {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding: 16px;
+        }
+        #adContainer .ad-box .close-btn {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            z-index: 1001;
+            background: #ff4444;
+            border: none;
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        #adContainer .ad-box .ad-frame {
+            width: 95%;
+            max-width: 420px;
+            height: 75%;
+            background: #0A0A0A;
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        #adContainer .ad-box .ad-frame iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        #adContainer .ad-box .ad-hint {
+            color: #8a7e6b;
+            font-size: 12px;
+            margin-top: 12px;
+        }
         @media (max-width: 640px) {
             .glass-panel { padding: 0.8rem; }
             .tab-btn { font-size: 0.6rem; padding: 0.2rem 0.4rem; }
@@ -248,6 +329,7 @@
             .market-card .value { font-size: 0.8rem; }
             .real-coin-lg { width: 60px; height: 60px; font-size: 18px; }
             .presale-input-group input { font-size: 0.85rem; padding: 0.3rem 0.2rem; }
+            #adContainer .ad-box .ad-frame { height: 60%; }
         }
     </style>
 </head>
@@ -358,7 +440,7 @@
     </div>
 
     <!-- ================================ -->
-    <!-- ===== 2. الشراء المسبق (معدل) ===== -->
+    <!-- ===== 2. الشراء المسبق ===== -->
     <!-- ================================ -->
     <div class="tab-panel" id="tab-presale">
         <div class="glass-panel">
@@ -370,7 +452,6 @@
                 </div>
             </div>
 
-            <!-- معلومات السوق (مضغوطة) -->
             <div class="grid grid-cols-4 gap-1 mb-2">
                 <div class="market-card">
                     <div class="label">القيمة السوقية</div>
@@ -390,30 +471,24 @@
                 </div>
             </div>
 
-            <!-- سعر VRT الحالي (متحرك) -->
             <div class="bg-surface-container-low/50 rounded-xl p-2 text-center border border-white/5 mb-2">
                 <div class="text-on-surface-variant text-[10px]">سعر VRT الحالي</div>
                 <div class="text-xl font-bold text-primary" id="presalePrice">0.1461 USDT</div>
-                <div class="text-[10px] mt-0.5" id="priceChangeIndicator">
-                    <span class="price-up">▲ +0.00%</span>
-                    <span class="text-on-surface-variant mx-1">|</span>
-                    <span class="text-on-surface-variant">🚀 فرصة صعود متوقعة</span>
-                </div>
+                <div class="text-[10px] mt-0.5 text-on-surface-variant">🚀 فرصة صعود متوقعة</div>
             </div>
 
-            <!-- آلة حاسبة الشراء (مضغوطة) -->
             <div class="space-y-2">
-                <!-- الخطوة 1: إرسال الأموال -->
                 <div class="bg-surface-container-low/30 rounded-xl p-2 border border-primary/10">
                     <div class="flex items-center gap-1 text-primary font-bold text-xs mb-1">
                         <span class="bg-primary/20 rounded-full w-5 h-5 flex items-center justify-center text-[10px]">1</span>
                         أرسل الأموال للعنوان التالي (شبكة BSC):
                     </div>
-                    <code class="text-primary text-[10px] break-all block bg-black/30 p-1.5 rounded-lg text-center" id="walletAddressDisplay">{{USDT_WALLET}}</code>
-                    <button class="btn-secondary text-[10px] py-0.5 px-2 w-full mt-0.5" id="copyAddressBtn">📋 نسخ العنوان</button>
+                    <div class="flex items-center gap-2 bg-black/30 p-2 rounded-lg">
+                        <code class="text-primary text-xs break-all flex-1" id="walletAddressDisplay">{{USDT_WALLET}}</code>
+                        <button class="btn-secondary text-[10px] py-0.5 px-2 whitespace-nowrap" id="copyAddressBtn">📋 نسخ</button>
+                    </div>
                 </div>
 
-                <!-- الخطوة 2: تأكيد الدفع مع الحاسبة -->
                 <div class="bg-surface-container-low/30 rounded-xl p-2 border border-primary/10">
                     <div class="flex items-center gap-1 text-primary font-bold text-xs mb-1">
                         <span class="bg-primary/20 rounded-full w-5 h-5 flex items-center justify-center text-[10px]">2</span>
@@ -443,7 +518,6 @@
                     </div>
                 </div>
 
-                <!-- الخطوة 3: TXID والصورة -->
                 <div class="bg-surface-container-low/30 rounded-xl p-2 border border-primary/10">
                     <div class="flex items-center gap-1 text-primary font-bold text-xs mb-1">
                         <span class="bg-primary/20 rounded-full w-5 h-5 flex items-center justify-center text-[10px]">3</span>
@@ -456,7 +530,6 @@
                     </div>
                 </div>
 
-                <!-- الخطوة 4: الإصدار -->
                 <div class="bg-surface-container-low/30 rounded-xl p-2 border border-primary/10 text-center">
                     <div class="flex items-center gap-1 text-primary font-bold text-xs mb-0.5 justify-center">
                         <span class="bg-primary/20 rounded-full w-5 h-5 flex items-center justify-center text-[10px]">4</span>
@@ -496,7 +569,7 @@
     </div>
 
     <!-- ================================ -->
-    <!-- ===== 4. الإعلانات ===== -->
+    <!-- ===== 4. الإعلانات (مع AdsGram) ===== -->
     <!-- ================================ -->
     <div class="tab-panel" id="tab-ads">
         <div class="glass-panel text-center">
@@ -522,6 +595,17 @@
                 <span class="material-symbols-outlined text-primary align-middle text-sm">info</span>
                 <span class="text-on-surface-variant text-[10px]">سيتم ربط الإعلانات عبر منصة AdsGram قريباً</span>
             </div>
+        </div>
+    </div>
+
+    <!-- ===== حاوية الإعلان ===== -->
+    <div id="adContainer">
+        <div class="ad-box">
+            <button class="close-btn" onclick="closeAd(false)">✕ إغلاق</button>
+            <div class="ad-frame">
+                <iframe src="https://adsgram.ai/embed/38042" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div>
+            <p class="ad-hint">⏳ انتظر انتهاء الإعلان للحصول على المكافأة</p>
         </div>
     </div>
 
@@ -726,7 +810,7 @@
 <!-- ===== JAVASCRIPT ===== -->
 <script>
     // ==========================================
-    // 1. متغيرات عامة
+    // متغيرات عامة
     // ==========================================
     let currentUser = null;
     let miningInterval = null;
@@ -735,12 +819,56 @@
     let captchaAnswer = 7;
     let currentLang = 'ar';
     let currentPrice = 0.1461;
-    let priceHistory = [];
     let adsWatched = 0;
     let adsEarnedVrt = 0;
+    let adTimer = null;
 
     // ==========================================
-    // 2. محاكاة تحرك السعر الحقيقي
+    // عرض الإشعارات
+    // ==========================================
+    function showToast(msg, isError = false) {
+        const existing = document.querySelector('.toast-msg');
+        if (existing) existing.remove();
+        const div = document.createElement('div');
+        div.className = 'toast-msg' + (isError ? ' error' : '');
+        div.innerText = msg;
+        document.body.appendChild(div);
+        setTimeout(() => div.remove(), 4000);
+    }
+
+    // ==========================================
+    // كابتشا
+    // ==========================================
+    function generateCaptcha() {
+        const a = Math.floor(Math.random() * 9) + 1;
+        const b = Math.floor(Math.random() * 9) + 1;
+        captchaAnswer = a + b;
+        document.getElementById('captchaDisplay').innerText = `${a} + ${b} = ?`;
+    }
+    generateCaptcha();
+
+    // ==========================================
+    // تبديل التبويبات
+    // ==========================================
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const tab = this.dataset.tab;
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+            const target = document.getElementById('tab-' + tab);
+            if (target) target.classList.add('active');
+            if (tab === 'admin') loadAdminData();
+            if (tab === 'tasks') loadTasks();
+            if (tab === 'referrals') loadReferrals();
+            if (tab === 'presale') { loadTransactionHistory(); updateCalculator(); }
+            if (tab === 'wallet') updateWalletDisplay();
+            if (tab === 'ads') loadAdsData();
+        });
+    });
+
+    // ==========================================
+    // محاكاة تحرك السعر
     // ==========================================
     function simulatePriceMovement() {
         const volatility = 0.0008;
@@ -753,19 +881,6 @@
         const priceEl = document.getElementById('presalePrice');
         if (priceEl) {
             priceEl.innerText = currentPrice.toFixed(4) + ' USDT';
-            priceEl.classList.remove('price-flash');
-            void priceEl.offsetWidth;
-            priceEl.classList.add('price-flash');
-        }
-
-        const indicatorEl = document.getElementById('priceChangeIndicator');
-        if (indicatorEl) {
-            const changePercent = ((change / currentPrice) * 100);
-            if (changePercent > 0) {
-                indicatorEl.innerHTML = `<span class="price-up">▲ +${changePercent.toFixed(2)}%</span><span class="text-on-surface-variant mx-1">|</span><span class="text-on-surface-variant">🚀 فرصة صعود متوقعة</span>`;
-            } else {
-                indicatorEl.innerHTML = `<span class="price-down">▼ ${changePercent.toFixed(2)}%</span><span class="text-on-surface-variant mx-1">|</span><span class="text-on-surface-variant">🚀 فرصة صعود متوقعة</span>`;
-            }
         }
 
         const walletPriceEl = document.getElementById('walletVrtPrice');
@@ -775,28 +890,11 @@
 
         updateWalletDisplay();
         updateCalculator();
-
-        priceHistory.push({ price: currentPrice, time: Date.now() });
-        if (priceHistory.length > 100) priceHistory.shift();
-        try {
-            localStorage.setItem('vortex_price_history', JSON.stringify(priceHistory));
-        } catch (e) { /* تجاهل */ }
     }
-
     setInterval(simulatePriceMovement, 3000);
 
-    try {
-        const savedHistory = localStorage.getItem('vortex_price_history');
-        if (savedHistory) {
-            const history = JSON.parse(savedHistory);
-            if (history.length > 0) {
-                currentPrice = history[history.length - 1].price;
-            }
-        }
-    } catch (e) { /* تجاهل */ }
-
     // ==========================================
-    // 3. آلة حاسبة الشراء
+    // آلة حاسبة الشراء
     // ==========================================
     function updateCalculator() {
         const usdtInput = document.getElementById('presaleUsdtInput');
@@ -829,95 +927,7 @@
     });
 
     // ==========================================
-    // 4. نظام الإعلانات
-    // ==========================================
-    document.getElementById('watchAdBtn')?.addEventListener('click', async function() {
-        this.disabled = true;
-        this.innerText = '⏳ جاري...';
-        const statusDiv = document.getElementById('adsStatus');
-
-        try {
-            statusDiv.innerHTML = '<span style="color:#f5c842;">📺 جاري مشاهدة الإعلان...</span>';
-            await new Promise(resolve => setTimeout(resolve, 5000));
-
-            adsWatched += 1;
-            document.getElementById('adsWatchedCount').innerText = adsWatched;
-
-            const earned = Math.floor(adsWatched / 10);
-            const pending = adsWatched % 10;
-            adsEarnedVrt = earned;
-
-            document.getElementById('adsEarnedVrt').innerText = adsEarnedVrt.toFixed(2) + ' VRT';
-
-            if (earned > 0 && currentUser) {
-                currentUser.balance_vrt = (currentUser.balance_vrt || 0) + earned;
-                updateUI(currentUser);
-                showToast(`✅ تم إضافة ${earned} VRT إلى محفظتك!`);
-                // إعادة تعيين العداد بعد الصرف
-                adsWatched = 0;
-                document.getElementById('adsWatchedCount').innerText = adsWatched;
-                adsEarnedVrt = 0;
-                document.getElementById('adsEarnedVrt').innerText = '0.00 VRT';
-            } else if (earned > 0) {
-                showToast(`✅ تم إضافة ${earned} VRT، سجل دخولك لرؤية الرصيد.`);
-            }
-
-            statusDiv.innerHTML = `<span style="color:#2ecc71;">✅ تم مشاهدة الإعلان! (${pending}/10 للوصول إلى 1 VRT)</span>`;
-            this.innerText = '📺 مشاهدة إعلان آخر';
-
-        } catch (e) {
-            statusDiv.innerHTML = '<span style="color:#ff6b6b;">❌ حدث خطأ، حاول مرة أخرى</span>';
-            this.innerText = '📺 مشاهدة إعلان';
-        }
-        this.disabled = false;
-    });
-
-    // ==========================================
-    // 5. عرض الإشعارات
-    // ==========================================
-    function showToast(msg, isError = false) {
-        const existing = document.querySelector('.toast-msg');
-        if (existing) existing.remove();
-        const div = document.createElement('div');
-        div.className = 'toast-msg' + (isError ? ' error' : '');
-        div.innerText = msg;
-        document.body.appendChild(div);
-        setTimeout(() => div.remove(), 4000);
-    }
-
-    // ==========================================
-    // 6. كابتشا
-    // ==========================================
-    function generateCaptcha() {
-        const a = Math.floor(Math.random() * 9) + 1;
-        const b = Math.floor(Math.random() * 9) + 1;
-        captchaAnswer = a + b;
-        document.getElementById('captchaDisplay').innerText = `${a} + ${b} = ?`;
-    }
-    generateCaptcha();
-
-    // ==========================================
-    // 7. تبديل التبويبات
-    // ==========================================
-    document.querySelectorAll('.tab-btn').forEach(btn => {
-        btn.addEventListener('click', function() {
-            const tab = this.dataset.tab;
-            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-            this.classList.add('active');
-            document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-            const target = document.getElementById('tab-' + tab);
-            if (target) target.classList.add('active');
-            if (tab === 'admin') loadAdminData();
-            if (tab === 'tasks') loadTasks();
-            if (tab === 'referrals') loadReferrals();
-            if (tab === 'presale') { loadTransactionHistory(); updateCalculator(); }
-            if (tab === 'wallet') updateWalletDisplay();
-            if (tab === 'ads') loadAdsData();
-        });
-    });
-
-    // ==========================================
-    // 8. نظام المصادقة
+    // نظام المصادقة
     // ==========================================
     async function checkAuth() {
         try {
@@ -988,10 +998,64 @@
             }));
         } catch (e) { /* تجاهل */ }
     }
-    document.addEventListener('adsWatched', saveAdsData);
 
     // ==========================================
-    // 9. تسجيل الدخول والتسجيل
+    // نظام الإعلانات (مع AdsGram)
+    // ==========================================
+    function openAd() {
+        document.getElementById('adContainer').style.display = 'flex';
+        // مؤقت احتياطي في حال لم يكتمل الإعلان (8 ثوانٍ)
+        adTimer = setTimeout(() => {
+            closeAd(true);
+        }, 8000);
+    }
+
+    function closeAd(completed = false) {
+        document.getElementById('adContainer').style.display = 'none';
+        if (adTimer) {
+            clearTimeout(adTimer);
+            adTimer = null;
+        }
+        if (completed) {
+            // إضافة المكافأة
+            adsWatched += 1;
+            document.getElementById('adsWatchedCount').innerText = adsWatched;
+
+            const earned = Math.floor(adsWatched / 10);
+            const pending = adsWatched % 10;
+            adsEarnedVrt = earned;
+            document.getElementById('adsEarnedVrt').innerText = adsEarnedVrt.toFixed(2) + ' VRT';
+
+            if (earned > 0 && currentUser) {
+                currentUser.balance_vrt = (currentUser.balance_vrt || 0) + earned;
+                updateUI(currentUser);
+                showToast(`✅ تم إضافة ${earned} VRT إلى محفظتك!`);
+                adsWatched = 0;
+                document.getElementById('adsWatchedCount').innerText = adsWatched;
+                adsEarnedVrt = 0;
+                document.getElementById('adsEarnedVrt').innerText = '0.00 VRT';
+            }
+            showToast(`✅ تم مشاهدة الإعلان! (${pending}/10 للوصول إلى 1 VRT)`);
+            saveAdsData();
+        } else {
+            showToast('❌ تم إغلاق الإعلان قبل انتهائه، حاول مرة أخرى', true);
+        }
+    }
+
+    // زر مشاهدة الإعلان
+    document.getElementById('watchAdBtn')?.addEventListener('click', function() {
+        this.disabled = true;
+        this.innerText = '⏳ جاري التحميل...';
+        const statusDiv = document.getElementById('adsStatus');
+        statusDiv.innerHTML = '<span style="color:#f5c842;">📺 جاري تحميل الإعلان...</span>';
+        openAd();
+        this.disabled = false;
+        this.innerText = '📺 مشاهدة إعلان آخر';
+        statusDiv.innerHTML = '';
+    });
+
+    // ==========================================
+    // تسجيل الدخول والتسجيل
     // ==========================================
     document.getElementById('loginForm')?.addEventListener('submit', async (e) => {
         e.preventDefault();
@@ -1058,7 +1122,7 @@
     });
 
     // ==========================================
-    // 10. نظام التعدين
+    // نظام التعدين
     // ==========================================
     async function updateMiningStatus() {
         try {
@@ -1155,7 +1219,7 @@
     }
 
     // ==========================================
-    // 11. الشراء المسبق
+    // الشراء المسبق
     // ==========================================
     document.getElementById('copyAddressBtn')?.addEventListener('click', function() {
         const addr = document.getElementById('walletAddressDisplay').innerText;
@@ -1235,7 +1299,7 @@
     }
 
     // ==========================================
-    // 12. المهام
+    // المهام
     // ==========================================
     async function loadTasks() {
         try {
@@ -1312,7 +1376,7 @@
     }
 
     // ==========================================
-    // 13. الإحالات
+    // الإحالات
     // ==========================================
     async function loadReferrals() {
         try {
@@ -1351,7 +1415,7 @@
     });
 
     // ==========================================
-    // 14. الإعدادات
+    // الإعدادات
     // ==========================================
     document.querySelectorAll('.lang-btn').forEach(btn => {
         btn.addEventListener('click', function() {
@@ -1403,7 +1467,7 @@
     }
 
     // ==========================================
-    // 15. لوحة الإدارة
+    // الإدارة
     // ==========================================
     async function loadAdminData() {
         try {
@@ -1424,74 +1488,67 @@
             const data = await res.json();
             const container = document.getElementById('adminPendingList');
             if (data.error || !data.transactions || data.transactions.length === 0) {
-                container.innerHTML = '<p class="text-on-surface-variant text-xs text-center py-1">لا توجد طلبات معلقة</p>';
+                container.innerHTML = '<p class="text-on-surface-variant text-xs text-center py-2">لا توجد طلبات معلقة</p>';
                 return;
             }
             container.innerHTML = data.transactions.map(t => `
-                <div class="glass-panel p-2 rounded-xl text-xs space-y-1">
-                    <div class="flex justify-between">
+                <div class="admin-purchase-item">
+                    <div class="header">
                         <span><span class="text-on-surface-variant">المستخدم:</span> ${t.user_id?.username || 'غير معروف'}</span>
                         <span><span class="text-on-surface-variant">المبلغ:</span> ${t.amount_usdt} USDT → ${t.amount_vrt.toFixed(2)} VRT</span>
                     </div>
-                    <div class="flex justify-between text-[10px]">
-                        <span class="text-on-surface-variant break-all">TXID: ${t.txid}</span>
+                    <div class="details">
+                        <span class="break-all">TXID: ${t.txid}</span>
                         ${t.warning_flag ? '<span class="text-red-400 font-bold">⚠️ تحذير</span>' : ''}
+                        ${t.screenshot_url ? '<span>📷 صورة مرفقة</span>' : ''}
                     </div>
-                    <div class="flex gap-1">
-                        <button class="btn-primary text-[10px] py-0.5 px-2 approve-btn" data-id="${t._id}">✅ قبول</button>
-                        <button class="btn-danger text-[10px] py-0.5 px-2 reject-btn" data-id="${t._id}">❌ رفض</button>
+                    <div class="actions">
+                        <button class="approve" onclick="approvePurchase('${t._id}')">✅ قبول</button>
+                        <button class="reject" onclick="rejectPurchase('${t._id}')">❌ رفض</button>
                     </div>
                 </div>
             `).join('');
-
-            document.querySelectorAll('.approve-btn').forEach(btn => {
-                btn.addEventListener('click', async function() {
-                    const id = this.dataset.id;
-                    if (!confirm('تأكيد قبول هذه المعاملة؟')) return;
-                    try {
-                        const res = await fetch('/admin/approve_purchase', {
-                            method: 'POST',
-                            credentials: 'include',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify({ transaction_id: id })
-                        });
-                        const data = await res.json();
-                        if (data.success) {
-                            showToast('✅ تم القبول');
-                            loadPendingPurchases();
-                            loadAdminData();
-                        } else {
-                            showToast('❌ ' + data.message, true);
-                        }
-                    } catch (e) { showToast('⚠️ خطأ', true); }
-                });
-            });
-
-            document.querySelectorAll('.reject-btn').forEach(btn => {
-                btn.addEventListener('click', async function() {
-                    const id = this.dataset.id;
-                    const reason = prompt('أدخل سبب الرفض:');
-                    if (!reason || reason.length < 3) return showToast('⚠️ سبب الرفض مطلوب', true);
-                    try {
-                        const res = await fetch('/admin/reject_purchase', {
-                            method: 'POST',
-                            credentials: 'include',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify({ transaction_id: id, reason })
-                        });
-                        const data = await res.json();
-                        if (data.success) {
-                            showToast('❌ تم الرفض');
-                            loadPendingPurchases();
-                            loadAdminData();
-                        } else {
-                            showToast('❌ ' + data.message, true);
-                        }
-                    } catch (e) { showToast('⚠️ خطأ', true); }
-                });
-            });
         } catch (e) { /* تجاهل */ }
     }
+
+    window.approvePurchase = async (id) => {
+        try {
+            const res = await fetch('/admin/approve_purchase', {
+                method: 'POST',
+                credentials: 'include',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ transaction_id: id })
+            });
+            const data = await res.json();
+            if (data.success) {
+                showToast('✅ تم قبول الطلب');
+                loadPendingPurchases();
+                loadAdminData();
+            } else {
+                showToast('❌ ' + data.message, true);
+            }
+        } catch (e) { showToast('⚠️ خطأ', true); }
+    };
+
+    window.rejectPurchase = async (id) => {
+        const reason = prompt('أدخل سبب الرفض (اختياري):');
+        try {
+            const res = await fetch('/admin/reject_purchase', {
+                method: 'POST',
+                credentials: 'include',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ transaction_id: id, reason: reason || 'لم يتم تحديد سبب' })
+            });
+            const data = await res.json();
+            if (data.success) {
+                showToast('❌ تم رفض الطلب');
+                loadPendingPurchases();
+                loadAdminData();
+            } else {
+                showToast('❌ ' + data.message, true);
+            }
+        } catch (e) { showToast('⚠️ خطأ', true); }
+    };
 
     document.getElementById('adminSetPriceBtn')?.addEventListener('click', async function() {
         const price = parseFloat(document.getElementById('adminPriceInput').value);
@@ -1508,7 +1565,6 @@
                 showToast('✅ تم تحديث السعر إلى ' + price);
                 currentPrice = price;
                 document.getElementById('presalePrice').innerText = price + ' USDT';
-                document.getElementById('settingsPrice').innerText = '$' + price;
                 updateCalculator();
             } else {
                 showToast('❌ ' + data.message, true);
@@ -1537,7 +1593,7 @@
     });
 
     // ==========================================
-    // 16. تحديث تلقائي
+    // تحديث تلقائي
     // ==========================================
     async function autoUpdate() {
         if (document.getElementById('tab-mining').classList.contains('active')) {
@@ -1559,7 +1615,7 @@
     }
 
     // ==========================================
-    // 17. بدء التطبيق
+    // بدء التطبيق
     // ==========================================
     document.addEventListener('DOMContentLoaded', async function() {
         await checkAuth();
@@ -1571,7 +1627,6 @@
             if (data && data.vtx_price) {
                 currentPrice = data.vtx_price;
                 document.getElementById('presalePrice').innerText = currentPrice + ' USDT';
-                document.getElementById('settingsPrice').innerText = '$' + currentPrice;
             }
             if (data && data.totalUsers !== undefined) {
                 document.getElementById('totalUsersDisplay').innerText = data.totalUsers || 0;
@@ -1584,4 +1639,4 @@
 </script>
 
 </body>
-                        </html>
+    </html>
